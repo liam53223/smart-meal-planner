@@ -1,0 +1,483 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Core User Management
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Questionnaire Results
+  primaryGoal        DietaryGoal?
+  healthConditions   UserHealthCondition[]
+  allergies          UserAllergy[]
+  preferences        UserPreferences?
+  
+  // User Data
+  mealPlans         MealPlan[]
+  shoppingLists     ShoppingList[]
+  favoriteRecipes   UserFavoriteRecipe[]
+  subscription      Subscription?
+  
+  @@map("users")
+}
+
+model UserPreferences {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Practical Constraints
+  cookingSkillLevel    CookingSkill @default(BEGINNER)
+  maxPrepTimeMinutes   Int          @default(30)
+  budgetRange          BudgetRange  @default(MODERATE)
+  householdSize        Int          @default(2)
+  
+  // Equipment Available
+  hasOven              Boolean      @default(true)
+  hasStove             Boolean      @default(true)
+  hasMicrowave         Boolean      @default(true)
+  hasBlender           Boolean      @default(false)
+  hasAirFryer          Boolean      @default(false)
+  hasSlowCooker        Boolean      @default(false)
+  hasInstantPot        Boolean      @default(false)
+  
+  // Meal Preferences
+  mealsPerDay          Int          @default(3)
+  snacksPerDay         Int          @default(2)
+  batchCookingPreference Boolean    @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("user_preferences")
+}
+
+// Health Conditions & Allergies
+model HealthCondition {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  category    HealthCategory
+  
+  users       UserHealthCondition[]
+  
+  @@map("health_conditions")
+}
+
+model UserHealthCondition {
+  id                String          @id @default(cuid())
+  userId            String
+  healthConditionId String
+  severity          Severity        @default(MODERATE)
+  diagnosedDate     DateTime?
+  
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  healthCondition   HealthCondition @relation(fields: [healthConditionId], references: [id])
+  
+  @@unique([userId, healthConditionId])
+  @@map("user_health_conditions")
+}
+
+model Allergen {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  category    AllergenCategory
+  
+  users       UserAllergy[]
+  
+  @@map("allergens")
+}
+
+model UserAllergy {
+  id         String   @id @default(cuid())
+  userId     String
+  allergenId String
+  severity   Severity @default(MODERATE)
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  allergen   Allergen @relation(fields: [allergenId], references: [id])
+  
+  @@unique([userId, allergenId])
+  @@map("user_allergies")
+}
+
+// Recipe System with Multi-Dimensional Tagging
+model Recipe {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  servings    Int      @default(4)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Recipe Content
+  ingredients     RecipeIngredient[]
+  instructions    RecipeInstruction[]
+  
+  // Multi-Dimensional Tags
+  medicalTags     RecipeMedicalTag[]
+  dietaryTags     RecipeDietaryTag[]
+  practicalTags   RecipePracticalTag[]
+  nutritionalTags RecipeNutritionalTag[]
+  
+  // Nutritional Information
+  nutritionalInfo NutritionalInfo?
+  
+  // User Interactions
+  favorites       UserFavoriteRecipe[]
+  mealPlanItems   MealPlanItem[]
+  
+  @@map("recipes")
+}
+
+model RecipeIngredient {
+  id       String @id @default(cuid())
+  recipeId String
+  name     String
+  amount   Float
+  unit     String
+  notes    String?
+  
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  @@map("recipe_ingredients")
+}
+
+model RecipeInstruction {
+  id       String @id @default(cuid())
+  recipeId String
+  stepNumber Int
+  instruction String
+  
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  @@map("recipe_instructions")
+}
+
+model NutritionalInfo {
+  id       String @id @default(cuid())
+  recipeId String @unique
+  
+  calories        Float?
+  protein         Float?
+  carbohydrates   Float?
+  fat             Float?
+  fiber           Float?
+  sugar           Float?
+  sodium          Float?
+  cholesterol     Float?
+  
+  // Micronutrients
+  vitaminC        Float?
+  vitaminD        Float?
+  calcium         Float?
+  iron            Float?
+  potassium       Float?
+  
+  recipe          Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  @@map("nutritional_info")
+}
+
+// Multi-Dimensional Tagging System
+model MedicalTag {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  condition   String // e.g., "diabetes", "ibs", "autoimmune"
+  
+  recipes     RecipeMedicalTag[]
+  
+  @@map("medical_tags")
+}
+
+model RecipeMedicalTag {
+  id          String @id @default(cuid())
+  recipeId    String
+  medicalTagId String
+  
+  recipe      Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  medicalTag  MedicalTag @relation(fields: [medicalTagId], references: [id])
+  
+  @@unique([recipeId, medicalTagId])
+  @@map("recipe_medical_tags")
+}
+
+model DietaryTag {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  category    DietaryCategory
+  
+  recipes     RecipeDietaryTag[]
+  
+  @@map("dietary_tags")
+}
+
+model RecipeDietaryTag {
+  id          String @id @default(cuid())
+  recipeId    String
+  dietaryTagId String
+  
+  recipe      Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  dietaryTag  DietaryTag @relation(fields: [dietaryTagId], references: [id])
+  
+  @@unique([recipeId, dietaryTagId])
+  @@map("recipe_dietary_tags")
+}
+
+model PracticalTag {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  category    PracticalCategory
+  
+  recipes     RecipePracticalTag[]
+  
+  @@map("practical_tags")
+}
+
+model RecipePracticalTag {
+  id             String @id @default(cuid())
+  recipeId       String
+  practicalTagId String
+  
+  recipe         Recipe      @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  practicalTag   PracticalTag @relation(fields: [practicalTagId], references: [id])
+  
+  @@unique([recipeId, practicalTagId])
+  @@map("recipe_practical_tags")
+}
+
+model NutritionalTag {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String?
+  category    NutritionalCategory
+  
+  recipes     RecipeNutritionalTag[]
+  
+  @@map("nutritional_tags")
+}
+
+model RecipeNutritionalTag {
+  id               String @id @default(cuid())
+  recipeId         String
+  nutritionalTagId String
+  
+  recipe           Recipe         @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  nutritionalTag   NutritionalTag @relation(fields: [nutritionalTagId], references: [id])
+  
+  @@unique([recipeId, nutritionalTagId])
+  @@map("recipe_nutritional_tags")
+}
+
+// Meal Planning System
+model MealPlan {
+  id            String   @id @default(cuid())
+  userId        String
+  name          String
+  weekStartDate DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meals         MealPlanItem[]
+  shoppingList  ShoppingList?
+  
+  @@map("meal_plans")
+}
+
+model MealPlanItem {
+  id         String   @id @default(cuid())
+  mealPlanId String
+  recipeId   String
+  dayOfWeek  DayOfWeek
+  mealType   MealType
+  servings   Int      @default(1)
+  
+  mealPlan   MealPlan @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
+  recipe     Recipe   @relation(fields: [recipeId], references: [id])
+  
+  @@map("meal_plan_items")
+}
+
+// Shopping List System
+model ShoppingList {
+  id         String   @id @default(cuid())
+  userId     String
+  mealPlanId String?  @unique
+  name       String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  user       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mealPlan   MealPlan?         @relation(fields: [mealPlanId], references: [id])
+  items      ShoppingListItem[]
+  
+  @@map("shopping_lists")
+}
+
+model ShoppingListItem {
+  id             String  @id @default(cuid())
+  shoppingListId String
+  name           String
+  amount         Float
+  unit           String
+  category       String?
+  purchased      Boolean @default(false)
+  estimatedPrice Float?
+  
+  shoppingList   ShoppingList @relation(fields: [shoppingListId], references: [id], onDelete: Cascade)
+  
+  @@map("shopping_list_items")
+}
+
+// User Favorites
+model UserFavoriteRecipe {
+  id       String @id @default(cuid())
+  userId   String
+  recipeId String
+  addedAt  DateTime @default(now())
+  
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, recipeId])
+  @@map("user_favorite_recipes")
+}
+
+// Subscription Management
+model Subscription {
+  id                String            @id @default(cuid())
+  userId            String            @unique
+  stripeCustomerId  String?           @unique
+  stripeSubscriptionId String?        @unique
+  status            SubscriptionStatus
+  tier              SubscriptionTier
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("subscriptions")
+}
+
+// Enums
+enum DietaryGoal {
+  WEIGHT_LOSS
+  MUSCLE_GAIN
+  MEDICAL_CONDITION
+  LIFESTYLE_DIET
+  GENERAL_HEALTH
+}
+
+enum HealthCategory {
+  DIGESTIVE
+  METABOLIC
+  AUTOIMMUNE
+  CARDIOVASCULAR
+  HORMONAL
+  NEUROLOGICAL
+  OTHER
+}
+
+enum AllergenCategory {
+  FOOD
+  ENVIRONMENTAL
+  MEDICATION
+  OTHER
+}
+
+enum Severity {
+  MILD
+  MODERATE
+  SEVERE
+}
+
+enum CookingSkill {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum BudgetRange {
+  BUDGET
+  MODERATE
+  PREMIUM
+}
+
+enum DietaryCategory {
+  RESTRICTION
+  PREFERENCE
+  LIFESTYLE
+  RELIGIOUS
+}
+
+enum PracticalCategory {
+  TIME
+  EQUIPMENT
+  SKILL
+  BATCH_COOKING
+}
+
+enum NutritionalCategory {
+  MACRONUTRIENT
+  MICRONUTRIENT
+  SPECIAL_FOCUS
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+  INCOMPLETE
+}
+
+enum SubscriptionTier {
+  MEDICAL_BASIC
+  MEDICAL_PREMIUM
+  MEDICAL_SPECIALIST
+  LIFESTYLE_STARTER
+  LIFESTYLE_PREMIUM
+  LIFESTYLE_FAMILY
+  WHITE_LABEL_NUTRITIONIST
+  WHITE_LABEL_CLINIC
+}

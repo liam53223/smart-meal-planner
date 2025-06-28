@@ -1,0 +1,65 @@
+# Copy this to .env.local and fill in your actual values
+
+# Database Configuration
+DATABASE_URL="postgresql://username:password@localhost:5432/meal_planner"
+DIRECT_URL="postgresql://username:password@localhost:5432/meal_planner"
+
+# OpenAI API Configuration
+OPENAI_API_KEY="sk-your-openai-api-key-here"
+OPENAI_ORG_ID="org-your-organization-id"
+
+# Authentication (NextAuth.js)
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-nextauth-secret-key"
+GOOGLE_CLIENT_ID="your-google-oauth-client-id"
+GOOGLE_CLIENT_SECRET="your-google-oauth-client-secret"
+
+# Stripe Payment Processing
+STRIPE_PUBLISHABLE_KEY="pk_test_your-stripe-publishable-key"
+STRIPE_SECRET_KEY="sk_test_your-stripe-secret-key"
+STRIPE_WEBHOOK_SECRET="whsec_your-webhook-secret"
+
+# Email Configuration (Resend)
+RESEND_API_KEY="re_your-resend-api-key"
+FROM_EMAIL="noreply@yourdomain.com"
+
+# External APIs
+USDA_API_KEY="your-usda-nutrition-api-key"
+SPOONACULAR_API_KEY="your-spoonacular-api-key"
+
+# Application Settings
+NODE_ENV="development"
+APP_URL="http://localhost:3000"
+ADMIN_EMAIL="admin@yourdomain.com"
+
+# Analytics & Monitoring
+VERCEL_ANALYTICS_ID="your-vercel-analytics-id"
+SENTRY_DSN="your-sentry-dsn"
+POSTHOG_KEY="your-posthog-key"
+
+# File Storage (if using cloud storage)
+AWS_ACCESS_KEY_ID="your-aws-access-key"
+AWS_SECRET_ACCESS_KEY="your-aws-secret-key"
+AWS_REGION="us-east-1"
+AWS_S3_BUCKET="your-s3-bucket-name"
+
+# Redis Cache (optional for production)
+REDIS_URL="redis://localhost:6379"
+
+# Feature Flags
+ENABLE_AI_MEAL_PLANS="true"
+ENABLE_PAYMENT_PROCESSING="true"
+ENABLE_EMAIL_NOTIFICATIONS="true"
+ENABLE_ANALYTICS="true"
+
+# Rate Limiting
+RATE_LIMIT_REQUESTS_PER_MINUTE="60"
+OPENAI_RATE_LIMIT_RPM="20"
+
+# Security
+ENCRYPTION_KEY="your-32-character-encryption-key"
+JWT_SECRET="your-jwt-secret-key"
+
+# Development Tools
+ENABLE_QUERY_LOGGING="false"
+ENABLE_DEBUG_MODE="false" 
