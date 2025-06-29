@@ -1,12 +1,26 @@
 # Copy this to .env.local and fill in your actual values
 
 # Database Configuration
-DATABASE_URL="postgresql://username:password@localhost:5432/meal_planner"
-DIRECT_URL="postgresql://username:password@localhost:5432/meal_planner"
+# SQLite for local development (simple, no setup required)
+DATABASE_URL="file:./dev.db"
 
-# OpenAI API Configuration
+# For production PostgreSQL:
+# DATABASE_URL="postgresql://username:password@localhost:5432/meal_planner"
+# DIRECT_URL="postgresql://username:password@localhost:5432/meal_planner"
+
+# AI Configuration - Hybrid Approach
+# Local Ollama endpoint (FREE - runs on your machine)
+NEXT_PUBLIC_OLLAMA_ENDPOINT="http://localhost:11434"
+
+# Claude API for complex nutrition queries (optional, pay-per-use)
+CLAUDE_API_KEY="sk-ant-your-claude-api-key-here"
+
+# OpenAI API Configuration (optional alternative to Claude)
 OPENAI_API_KEY="sk-your-openai-api-key-here"
 OPENAI_ORG_ID="org-your-organization-id"
+
+# AI Budget Control
+DAILY_AI_BUDGET="5"  # Maximum daily spend in your currency (e.g., £5)
 
 # Authentication (NextAuth.js)
 NEXTAUTH_URL="http://localhost:3000"
