@@ -62,8 +62,37 @@ model UserPreferences {
   snacksPerDay         Int          @default(2)
   batchCookingPreference Boolean    @default(false)
   
+  // NEW: Energy & Nutrition Goals
+  energyRestrictionGoal String?    // "weight_loss", "muscle_gain", "maintenance"
+  targetCaloriesMin     Int?
+  targetCaloriesMax     Int?
+  
+  // NEW: Cuisine & Flavor Preferences
+  cuisinePreferences    String?    @default("") // JSON array: ["italian", "asian", "mexican", etc.]
+  spiceTolerance        Int        @default(3) // 1-5 scale
+  flavorIntensity       Int        @default(3) // 1-5 scale
+  
+  // NEW: Advanced Cooking Skills
+  knifeSkillLevel       String     @default("basic") // "basic", "intermediate", "advanced"
+  preferredTechniques   String?    @default("") // JSON array: ["grilling", "stir_fry", "baking", etc.]
+  recipeComplexityComfort Int      @default(3) // 1-5 scale
+  
+  // NEW: Shopping & Budget
+  weeklyFoodBudget      Float?
+  shoppingFrequency     String     @default("weekly") // "daily", "weekly", "biweekly"
+  mealPlanningApproach  Int        @default(3) // 1-5 scale (1=rigid, 5=flexible)
+  
+  // NEW: Additional Preferences
+  textureLimitations    String?    // Free text for specific texture issues
+  foodsToAvoid          String?    // Free text for non-allergy foods to avoid
+  mealTimingPreference  String?    // "early", "standard", "late"
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
+  // Relations
+  appliances           UserAppliance[]
+  behaviorProfile      UserBehavior?
   
   @@map("user_preferences")
 }
@@ -118,6 +147,84 @@ model UserAllergy {
   @@map("user_allergies")
 }
 
+// NEW: Appliance Management
+model Appliance {
+  id          String @id @default(cuid())
+  name        String @unique
+  displayName String
+  category    String // "cooking", "prep", "storage"
+  
+  users       UserAppliance[]
+  
+  @@map("appliances")
+}
+
+model UserAppliance {
+  id               String @id @default(cuid())
+  userPreferencesId String
+  applianceId      String
+  usageFrequency   Int    @default(3) // 1-5 scale
+  
+  userPreferences  UserPreferences @relation(fields: [userPreferencesId], references: [id], onDelete: Cascade)
+  appliance        Appliance       @relation(fields: [applianceId], references: [id])
+  
+  @@unique([userPreferencesId, applianceId])
+  @@map("user_appliances")
+}
+
+// NEW: User Behavior Profile
+model UserBehavior {
+  id                      String @id @default(cuid())
+  userPreferencesId       String @unique
+  
+  // Behavioral Metrics
+  portionControlMotivation Int    @default(3) // 1-5 scale
+  habitChangeReadiness    String? @default("") // JSON array: ["meal_prep", "new_foods", "cooking_skills", etc.]
+  socialEatingPattern     Int    @default(3) // 1-5 scale (1=always alone, 5=always social)
+  successTrackingPreference String @default("visual") // "visual", "numeric", "journal", "none"
+  
+  // Activity & Health
+  activityLevel           String @default("moderate") // "sedentary", "light", "moderate", "active", "very_active"
+  healthConditionPriority Int    @default(3) // 1-5 scale
+  
+  userPreferences UserPreferences @relation(fields: [userPreferencesId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("user_behaviors")
+}
+
+// NEW: Evidence-Based Spice Blends
+model SpiceBlend {
+  id                String @id @default(cuid())
+  name              String @unique
+  displayName       String
+  activeCompounds   String // JSON array of compounds
+  clinicalEvidence  String // "A_RCT", "B_MULTIPLE", "B_LIMITED", etc.
+  primaryBenefit    String
+  effectiveDoseGrams Float
+  bioavailabilityHack String?
+  quickApplications String // JSON array of applications
+  
+  recipes           RecipeSpiceBlend[]
+  
+  @@map("spice_blends")
+}
+
+model RecipeSpiceBlend {
+  id           String @id @default(cuid())
+  recipeId     String
+  spiceBlendId String
+  amountGrams  Float
+  
+  recipe       Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  spiceBlend   SpiceBlend @relation(fields: [spiceBlendId], references: [id])
+  
+  @@unique([recipeId, spiceBlendId])
+  @@map("recipe_spice_blends")
+}
+
 // Recipe System with Multi-Dimensional Tagging
 model Recipe {
   id          String   @id @default(cuid())
@@ -126,6 +233,15 @@ model Recipe {
   servings    Int      @default(4)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
+  // NEW: Core Recipe Metadata
+  prepTimeMinutes    Int
+  cookTimeMinutes    Int
+  totalTimeMinutes   Int
+  complexity         Int      @default(3) // 1-5 scale
+  costTier           String   @default("moderate") // "budget", "moderate", "premium"
+  requiredAppliances String   @default("") // JSON array: ["oven", "air_fryer", etc.]
+  goalTags           String   @default("") // JSON array: ["weight_loss", "muscle_gain", "PCOS", etc.]
   
   // Recipe Content
   ingredients     RecipeIngredient[]
@@ -136,6 +252,9 @@ model Recipe {
   dietaryTags     RecipeDietaryTag[]
   practicalTags   RecipePracticalTag[]
   nutritionalTags RecipeNutritionalTag[]
+  
+  // NEW: Spice Blends
+  spiceBlends     RecipeSpiceBlend[]
   
   // Nutritional Information
   nutritionalInfo NutritionalInfo?

@@ -9,12 +9,44 @@ interface DynamicQuestionnaireProps {
 export function DynamicQuestionnaire({ onComplete }: DynamicQuestionnaireProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
+    // Basic info
     primaryGoal: '',
+    activityLevel: '',
+    targetCalories: '',
+    
+    // Cooking preferences
     cookingSkill: '',
+    knifeSkillLevel: '',
+    preferredTechniques: [] as string[],
+    recipeComplexityComfort: 3,
     maxPrepTime: 30,
+    
+    // Equipment
+    appliances: [] as string[],
+    
+    // Budget & Shopping
     budgetRange: '',
+    weeklyFoodBudget: '',
+    shoppingFrequency: '',
+    mealPlanningApproach: 3,
     householdSize: 2,
-    allergies: [] as string[]
+    
+    // Cuisine & Flavor
+    cuisinePreferences: [] as string[],
+    spiceTolerance: 3,
+    flavorIntensity: 3,
+    mealTimingPreference: '',
+    
+    // Dietary
+    allergies: [] as string[],
+    textureLimitations: '',
+    foodsToAvoid: '',
+    
+    // Behavioral
+    portionControlMotivation: 3,
+    habitChangeReadiness: [] as string[],
+    socialEatingPattern: 3,
+    successTrackingPreference: ''
   });
 
   const steps = [
@@ -33,18 +65,98 @@ export function DynamicQuestionnaire({ onComplete }: DynamicQuestionnaireProps) 
             'Following a Lifestyle Diet',
             'General Health & Wellness'
           ]
+        },
+        {
+          id: 'activityLevel',
+          question: 'How would you describe your activity level?',
+          type: 'single_choice',
+          options: [
+            'Sedentary (little to no exercise)',
+            'Lightly Active (1-3 days/week)',
+            'Moderately Active (3-5 days/week)',
+            'Very Active (6-7 days/week)',
+            'Extremely Active (physical job + exercise)'
+          ]
+        },
+        {
+          id: 'targetCalories',
+          question: 'Do you have a target calorie range? (optional)',
+          type: 'single_choice',
+          options: [
+            'Under 1500 calories',
+            '1500-2000 calories',
+            '2000-2500 calories',
+            '2500-3000 calories',
+            'Over 3000 calories',
+            'Not sure / No preference'
+          ]
         }
       ]
     },
     {
-      title: 'Practical considerations',
-      description: 'Help us understand your cooking situation and preferences',
+      title: 'Your cooking experience',
+      description: 'Help us match recipes to your skill level and preferences',
       questions: [
         {
           id: 'cookingSkill',
-          question: 'How would you describe your cooking skills?',
+          question: 'How would you describe your overall cooking skills?',
           type: 'single_choice',
           options: ['Beginner', 'Intermediate', 'Advanced']
+        },
+        {
+          id: 'knifeSkillLevel',
+          question: 'How comfortable are you with knife work?',
+          type: 'single_choice',
+          options: [
+            'Basic (can chop vegetables)',
+            'Intermediate (can dice, julienne)',
+            'Advanced (professional techniques)'
+          ]
+        },
+        {
+          id: 'preferredTechniques',
+          question: 'Which cooking techniques do you enjoy? (Select all that apply)',
+          type: 'multiple_choice',
+          options: [
+            'Grilling',
+            'Stir-frying',
+            'Baking',
+            'Roasting',
+            'Steaming',
+            'Slow cooking',
+            'Pressure cooking',
+            'No-cook meals'
+          ]
+        },
+        {
+          id: 'recipeComplexityComfort',
+          question: 'How complex of recipes are you comfortable with?',
+          type: 'scale',
+          min: 1,
+          max: 5,
+          labels: ['Very Simple', 'Simple', 'Moderate', 'Complex', 'Very Complex']
+        }
+      ]
+    },
+    {
+      title: 'Kitchen equipment',
+      description: 'Tell us what appliances you have access to',
+      questions: [
+        {
+          id: 'appliances',
+          question: 'Which appliances do you have? (Select all that apply)',
+          type: 'multiple_choice',
+          options: [
+            'Oven',
+            'Stove/Hob',
+            'Microwave',
+            'Air Fryer',
+            'Instant Pot/Pressure Cooker',
+            'Slow Cooker',
+            'Blender',
+            'Food Processor',
+            'Grill/BBQ'
+          ]
         },
         {
           id: 'maxPrepTime',
@@ -52,7 +164,13 @@ export function DynamicQuestionnaire({ onComplete }: DynamicQuestionnaireProps) 
           type: 'number',
           min: 5,
           max: 180
-        },
+        }
+      ]
+    },
+    {
+      title: 'Budget & shopping',
+      description: 'Help us understand your budget and shopping preferences',
+      questions: [
         {
           id: 'budgetRange',
           question: 'What\'s your grocery budget preference?',
@@ -60,16 +178,99 @@ export function DynamicQuestionnaire({ onComplete }: DynamicQuestionnaireProps) 
           options: ['Budget-conscious', 'Moderate spending', 'Premium ingredients']
         },
         {
+          id: 'weeklyFoodBudget',
+          question: 'Weekly food budget per person (optional)?',
+          type: 'single_choice',
+          options: [
+            'Under $50',
+            '$50-$75',
+            '$75-$100',
+            '$100-$150',
+            'Over $150',
+            'Prefer not to say'
+          ]
+        },
+        {
+          id: 'shoppingFrequency',
+          question: 'How often do you grocery shop?',
+          type: 'single_choice',
+          options: [
+            'Daily',
+            '2-3 times per week',
+            'Weekly',
+            'Every 2 weeks',
+            'Monthly'
+          ]
+        },
+        {
           id: 'householdSize',
           question: 'How many people are you cooking for?',
           type: 'number',
           min: 1,
           max: 20
+        },
+        {
+          id: 'mealPlanningApproach',
+          question: 'How flexible do you like your meal plans?',
+          type: 'scale',
+          min: 1,
+          max: 5,
+          labels: ['Very Rigid', 'Structured', 'Balanced', 'Flexible', 'Very Flexible']
         }
       ]
     },
     {
-      title: 'Safety first',
+      title: 'Cuisine & flavor preferences',
+      description: 'Tell us about your taste preferences',
+      questions: [
+        {
+          id: 'cuisinePreferences',
+          question: 'Which cuisines do you enjoy? (Select all that apply)',
+          type: 'multiple_choice',
+          options: [
+            'Italian',
+            'Asian (Chinese/Japanese/Thai)',
+            'Mexican',
+            'Mediterranean',
+            'Indian',
+            'American',
+            'French',
+            'Middle Eastern',
+            'African',
+            'Latin American'
+          ]
+        },
+        {
+          id: 'spiceTolerance',
+          question: 'How spicy do you like your food?',
+          type: 'scale',
+          min: 1,
+          max: 5,
+          labels: ['No spice', 'Mild', 'Medium', 'Hot', 'Very hot']
+        },
+        {
+          id: 'flavorIntensity',
+          question: 'How intense do you like flavors?',
+          type: 'scale',
+          min: 1,
+          max: 5,
+          labels: ['Very mild', 'Mild', 'Moderate', 'Bold', 'Very bold']
+        },
+        {
+          id: 'mealTimingPreference',
+          question: 'When do you prefer your largest meal?',
+          type: 'single_choice',
+          options: [
+            'Breakfast',
+            'Lunch',
+            'Dinner',
+            'Equal portions throughout'
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Dietary needs & restrictions',
       description: 'Tell us about any allergies or foods you need to avoid',
       questions: [
         {
@@ -85,7 +286,69 @@ export function DynamicQuestionnaire({ onComplete }: DynamicQuestionnaireProps) 
             'Fish',
             'Eggs',
             'Soy',
+            'Corn',
+            'Nightshades',
             'None'
+          ]
+        },
+        {
+          id: 'textureLimitations',
+          question: 'Any texture issues we should know about? (optional)',
+          type: 'text',
+          placeholder: 'e.g., can\'t eat crunchy foods, prefer smooth textures'
+        },
+        {
+          id: 'foodsToAvoid',
+          question: 'Any other foods you want to avoid? (optional)',
+          type: 'text',
+          placeholder: 'e.g., mushrooms, onions, spicy foods'
+        }
+      ]
+    },
+    {
+      title: 'Behavior & motivation',
+      description: 'Help us understand your readiness for change',
+      questions: [
+        {
+          id: 'portionControlMotivation',
+          question: 'How motivated are you to control portions?',
+          type: 'scale',
+          min: 1,
+          max: 5,
+          labels: ['Not motivated', 'Slightly', 'Moderately', 'Very', 'Extremely']
+        },
+        {
+          id: 'habitChangeReadiness',
+          question: 'What changes are you ready to make? (Select all that apply)',
+          type: 'multiple_choice',
+          options: [
+            'Meal prep on weekends',
+            'Try new foods',
+            'Learn new cooking skills',
+            'Track my meals',
+            'Eat more vegetables',
+            'Reduce processed foods',
+            'Cook more at home'
+          ]
+        },
+        {
+          id: 'socialEatingPattern',
+          question: 'How often do you eat with others?',
+          type: 'scale',
+          min: 1,
+          max: 5,
+          labels: ['Always alone', 'Mostly alone', 'Mixed', 'Mostly social', 'Always social']
+        },
+        {
+          id: 'successTrackingPreference',
+          question: 'How do you prefer to track progress?',
+          type: 'single_choice',
+          options: [
+            'Visual charts/graphs',
+            'Numbers and metrics',
+            'Journal/notes',
+            'Photos',
+            'No tracking needed'
           ]
         }
       ]
@@ -193,6 +456,46 @@ export function DynamicQuestionnaire({ onComplete }: DynamicQuestionnaireProps) 
               <span>Max: {question.max}</span>
             </div>
           </div>
+        );
+
+      case 'scale':
+        return (
+          <div className="space-y-3">
+            <input
+              type="range"
+              value={value || question.min || 1}
+              onChange={(e) => handleInputChange(question.id, parseInt(e.target.value))}
+              min={question.min}
+              max={question.max}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex justify-between text-xs text-gray-500">
+              {question.labels ? (
+                question.labels.map((label: string, index: number) => (
+                  <span key={index} className={index === Math.floor(question.labels.length / 2) ? 'font-medium' : ''}>
+                    {label}
+                  </span>
+                ))
+              ) : (
+                <>
+                  <span>{question.min}</span>
+                  <span className="font-medium">{value || question.min}</span>
+                  <span>{question.max}</span>
+                </>
+              )}
+            </div>
+          </div>
+        );
+
+      case 'text':
+        return (
+          <input
+            type="text"
+            value={value || ''}
+            onChange={(e) => handleInputChange(question.id, e.target.value)}
+            placeholder={question.placeholder || ''}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
         );
 
       default:
