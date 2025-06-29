@@ -158,6 +158,16 @@ export type UserFavoriteRecipe = $Result.DefaultSelection<Prisma.$UserFavoriteRe
  * 
  */
 export type Subscription = $Result.DefaultSelection<Prisma.$SubscriptionPayload>
+/**
+ * Model Feedback
+ * 
+ */
+export type Feedback = $Result.DefaultSelection<Prisma.$FeedbackPayload>
+/**
+ * Model ABTest
+ * 
+ */
+export type ABTest = $Result.DefaultSelection<Prisma.$ABTestPayload>
 
 /**
  * Enums
@@ -768,6 +778,26 @@ export class PrismaClient<
     * ```
     */
   get subscription(): Prisma.SubscriptionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedback`: Exposes CRUD operations for the **Feedback** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Feedbacks
+    * const feedbacks = await prisma.feedback.findMany()
+    * ```
+    */
+  get feedback(): Prisma.FeedbackDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aBTest`: Exposes CRUD operations for the **ABTest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ABTests
+    * const aBTests = await prisma.aBTest.findMany()
+    * ```
+    */
+  get aBTest(): Prisma.ABTestDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1236,7 +1266,9 @@ export namespace Prisma {
     ShoppingList: 'ShoppingList',
     ShoppingListItem: 'ShoppingListItem',
     UserFavoriteRecipe: 'UserFavoriteRecipe',
-    Subscription: 'Subscription'
+    Subscription: 'Subscription',
+    Feedback: 'Feedback',
+    ABTest: 'ABTest'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1255,7 +1287,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userPreferences" | "healthCondition" | "userHealthCondition" | "allergen" | "userAllergy" | "appliance" | "userAppliance" | "userBehavior" | "spiceBlend" | "recipeSpiceBlend" | "recipe" | "recipeIngredient" | "recipeInstruction" | "nutritionalInfo" | "medicalTag" | "recipeMedicalTag" | "dietaryTag" | "recipeDietaryTag" | "practicalTag" | "recipePracticalTag" | "nutritionalTag" | "recipeNutritionalTag" | "mealPlan" | "mealPlanItem" | "shoppingList" | "shoppingListItem" | "userFavoriteRecipe" | "subscription"
+      modelProps: "user" | "userPreferences" | "healthCondition" | "userHealthCondition" | "allergen" | "userAllergy" | "appliance" | "userAppliance" | "userBehavior" | "spiceBlend" | "recipeSpiceBlend" | "recipe" | "recipeIngredient" | "recipeInstruction" | "nutritionalInfo" | "medicalTag" | "recipeMedicalTag" | "dietaryTag" | "recipeDietaryTag" | "practicalTag" | "recipePracticalTag" | "nutritionalTag" | "recipeNutritionalTag" | "mealPlan" | "mealPlanItem" | "shoppingList" | "shoppingListItem" | "userFavoriteRecipe" | "subscription" | "feedback" | "aBTest"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3405,6 +3437,154 @@ export namespace Prisma {
           }
         }
       }
+      Feedback: {
+        payload: Prisma.$FeedbackPayload<ExtArgs>
+        fields: Prisma.FeedbackFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeedbackFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeedbackFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          findFirst: {
+            args: Prisma.FeedbackFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeedbackFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          findMany: {
+            args: Prisma.FeedbackFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+          }
+          create: {
+            args: Prisma.FeedbackCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          createMany: {
+            args: Prisma.FeedbackCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeedbackCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+          }
+          delete: {
+            args: Prisma.FeedbackDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          update: {
+            args: Prisma.FeedbackUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeedbackDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeedbackUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeedbackUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeedbackUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedbackAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedback>
+          }
+          groupBy: {
+            args: Prisma.FeedbackGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedbackGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeedbackCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedbackCountAggregateOutputType> | number
+          }
+        }
+      }
+      ABTest: {
+        payload: Prisma.$ABTestPayload<ExtArgs>
+        fields: Prisma.ABTestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ABTestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ABTestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>
+          }
+          findFirst: {
+            args: Prisma.ABTestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ABTestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>
+          }
+          findMany: {
+            args: Prisma.ABTestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>[]
+          }
+          create: {
+            args: Prisma.ABTestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>
+          }
+          createMany: {
+            args: Prisma.ABTestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ABTestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>[]
+          }
+          delete: {
+            args: Prisma.ABTestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>
+          }
+          update: {
+            args: Prisma.ABTestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>
+          }
+          deleteMany: {
+            args: Prisma.ABTestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ABTestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ABTestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>[]
+          }
+          upsert: {
+            args: Prisma.ABTestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ABTestPayload>
+          }
+          aggregate: {
+            args: Prisma.ABTestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateABTest>
+          }
+          groupBy: {
+            args: Prisma.ABTestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ABTestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ABTestCountArgs<ExtArgs>
+            result: $Utils.Optional<ABTestCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3518,6 +3698,8 @@ export namespace Prisma {
     shoppingListItem?: ShoppingListItemOmit
     userFavoriteRecipe?: UserFavoriteRecipeOmit
     subscription?: SubscriptionOmit
+    feedback?: FeedbackOmit
+    aBTest?: ABTestOmit
   }
 
   /* Types for Logging */
@@ -3617,6 +3799,8 @@ export namespace Prisma {
     mealPlans: number
     shoppingLists: number
     favoriteRecipes: number
+    feedbacks: number
+    abTests: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3625,6 +3809,8 @@ export namespace Prisma {
     mealPlans?: boolean | UserCountOutputTypeCountMealPlansArgs
     shoppingLists?: boolean | UserCountOutputTypeCountShoppingListsArgs
     favoriteRecipes?: boolean | UserCountOutputTypeCountFavoriteRecipesArgs
+    feedbacks?: boolean | UserCountOutputTypeCountFeedbacksArgs
+    abTests?: boolean | UserCountOutputTypeCountAbTestsArgs
   }
 
   // Custom InputTypes
@@ -3671,6 +3857,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountFavoriteRecipesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserFavoriteRecipeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFeedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedbackWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAbTestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ABTestWhereInput
   }
 
 
@@ -3843,6 +4043,7 @@ export namespace Prisma {
     spiceBlends: number
     favorites: number
     mealPlanItems: number
+    feedbacks: number
   }
 
   export type RecipeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3855,6 +4056,7 @@ export namespace Prisma {
     spiceBlends?: boolean | RecipeCountOutputTypeCountSpiceBlendsArgs
     favorites?: boolean | RecipeCountOutputTypeCountFavoritesArgs
     mealPlanItems?: boolean | RecipeCountOutputTypeCountMealPlanItemsArgs
+    feedbacks?: boolean | RecipeCountOutputTypeCountFeedbacksArgs
   }
 
   // Custom InputTypes
@@ -3929,6 +4131,13 @@ export namespace Prisma {
    */
   export type RecipeCountOutputTypeCountMealPlanItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MealPlanItemWhereInput
+  }
+
+  /**
+   * RecipeCountOutputType without action
+   */
+  export type RecipeCountOutputTypeCountFeedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedbackWhereInput
   }
 
 
@@ -4139,6 +4348,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     primaryGoal: $Enums.DietaryGoal | null
+    preferencesJson: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -4148,6 +4358,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     primaryGoal: $Enums.DietaryGoal | null
+    preferencesJson: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -4157,6 +4368,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     primaryGoal: number
+    preferencesJson: number
     _all: number
   }
 
@@ -4168,6 +4380,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     primaryGoal?: true
+    preferencesJson?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -4177,6 +4390,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     primaryGoal?: true
+    preferencesJson?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -4186,6 +4400,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     primaryGoal?: true
+    preferencesJson?: true
     _all?: true
   }
 
@@ -4268,6 +4483,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     primaryGoal: $Enums.DietaryGoal | null
+    preferencesJson: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -4294,6 +4510,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     primaryGoal?: boolean
+    preferencesJson?: boolean
     healthConditions?: boolean | User$healthConditionsArgs<ExtArgs>
     allergies?: boolean | User$allergiesArgs<ExtArgs>
     preferences?: boolean | User$preferencesArgs<ExtArgs>
@@ -4301,6 +4518,8 @@ export namespace Prisma {
     shoppingLists?: boolean | User$shoppingListsArgs<ExtArgs>
     favoriteRecipes?: boolean | User$favoriteRecipesArgs<ExtArgs>
     subscription?: boolean | User$subscriptionArgs<ExtArgs>
+    feedbacks?: boolean | User$feedbacksArgs<ExtArgs>
+    abTests?: boolean | User$abTestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4311,6 +4530,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     primaryGoal?: boolean
+    preferencesJson?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4320,6 +4540,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     primaryGoal?: boolean
+    preferencesJson?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -4329,9 +4550,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     primaryGoal?: boolean
+    preferencesJson?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "createdAt" | "updatedAt" | "primaryGoal", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "createdAt" | "updatedAt" | "primaryGoal" | "preferencesJson", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     healthConditions?: boolean | User$healthConditionsArgs<ExtArgs>
     allergies?: boolean | User$allergiesArgs<ExtArgs>
@@ -4340,6 +4562,8 @@ export namespace Prisma {
     shoppingLists?: boolean | User$shoppingListsArgs<ExtArgs>
     favoriteRecipes?: boolean | User$favoriteRecipesArgs<ExtArgs>
     subscription?: boolean | User$subscriptionArgs<ExtArgs>
+    feedbacks?: boolean | User$feedbacksArgs<ExtArgs>
+    abTests?: boolean | User$abTestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4355,6 +4579,8 @@ export namespace Prisma {
       shoppingLists: Prisma.$ShoppingListPayload<ExtArgs>[]
       favoriteRecipes: Prisma.$UserFavoriteRecipePayload<ExtArgs>[]
       subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
+      feedbacks: Prisma.$FeedbackPayload<ExtArgs>[]
+      abTests: Prisma.$ABTestPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4363,6 +4589,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       primaryGoal: $Enums.DietaryGoal | null
+      preferencesJson: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -4764,6 +4991,8 @@ export namespace Prisma {
     shoppingLists<T extends User$shoppingListsArgs<ExtArgs> = {}>(args?: Subset<T, User$shoppingListsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShoppingListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     favoriteRecipes<T extends User$favoriteRecipesArgs<ExtArgs> = {}>(args?: Subset<T, User$favoriteRecipesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserFavoriteRecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subscription<T extends User$subscriptionArgs<ExtArgs> = {}>(args?: Subset<T, User$subscriptionArgs<ExtArgs>>): Prisma__SubscriptionClient<$Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    feedbacks<T extends User$feedbacksArgs<ExtArgs> = {}>(args?: Subset<T, User$feedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    abTests<T extends User$abTestsArgs<ExtArgs> = {}>(args?: Subset<T, User$abTestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4799,6 +5028,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly primaryGoal: FieldRef<"User", 'DietaryGoal'>
+    readonly preferencesJson: FieldRef<"User", 'String'>
   }
     
 
@@ -5340,6 +5570,54 @@ export namespace Prisma {
      */
     include?: SubscriptionInclude<ExtArgs> | null
     where?: SubscriptionWhereInput
+  }
+
+  /**
+   * User.feedbacks
+   */
+  export type User$feedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    where?: FeedbackWhereInput
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    cursor?: FeedbackWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * User.abTests
+   */
+  export type User$abTestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    where?: ABTestWhereInput
+    orderBy?: ABTestOrderByWithRelationInput | ABTestOrderByWithRelationInput[]
+    cursor?: ABTestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ABTestScalarFieldEnum | ABTestScalarFieldEnum[]
   }
 
   /**
@@ -16963,6 +17241,7 @@ export namespace Prisma {
     nutritionalInfo?: boolean | Recipe$nutritionalInfoArgs<ExtArgs>
     favorites?: boolean | Recipe$favoritesArgs<ExtArgs>
     mealPlanItems?: boolean | Recipe$mealPlanItemsArgs<ExtArgs>
+    feedbacks?: boolean | Recipe$feedbacksArgs<ExtArgs>
     _count?: boolean | RecipeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["recipe"]>
 
@@ -17026,6 +17305,7 @@ export namespace Prisma {
     nutritionalInfo?: boolean | Recipe$nutritionalInfoArgs<ExtArgs>
     favorites?: boolean | Recipe$favoritesArgs<ExtArgs>
     mealPlanItems?: boolean | Recipe$mealPlanItemsArgs<ExtArgs>
+    feedbacks?: boolean | Recipe$feedbacksArgs<ExtArgs>
     _count?: boolean | RecipeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RecipeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -17044,6 +17324,7 @@ export namespace Prisma {
       nutritionalInfo: Prisma.$NutritionalInfoPayload<ExtArgs> | null
       favorites: Prisma.$UserFavoriteRecipePayload<ExtArgs>[]
       mealPlanItems: Prisma.$MealPlanItemPayload<ExtArgs>[]
+      feedbacks: Prisma.$FeedbackPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17463,6 +17744,7 @@ export namespace Prisma {
     nutritionalInfo<T extends Recipe$nutritionalInfoArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$nutritionalInfoArgs<ExtArgs>>): Prisma__NutritionalInfoClient<$Result.GetResult<Prisma.$NutritionalInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     favorites<T extends Recipe$favoritesArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserFavoriteRecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mealPlanItems<T extends Recipe$mealPlanItemsArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$mealPlanItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MealPlanItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    feedbacks<T extends Recipe$feedbacksArgs<ExtArgs> = {}>(args?: Subset<T, Recipe$feedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18123,6 +18405,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MealPlanItemScalarFieldEnum | MealPlanItemScalarFieldEnum[]
+  }
+
+  /**
+   * Recipe.feedbacks
+   */
+  export type Recipe$feedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    where?: FeedbackWhereInput
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    cursor?: FeedbackWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
 
   /**
@@ -36629,6 +36935,2173 @@ export namespace Prisma {
 
 
   /**
+   * Model Feedback
+   */
+
+  export type AggregateFeedback = {
+    _count: FeedbackCountAggregateOutputType | null
+    _avg: FeedbackAvgAggregateOutputType | null
+    _sum: FeedbackSumAggregateOutputType | null
+    _min: FeedbackMinAggregateOutputType | null
+    _max: FeedbackMaxAggregateOutputType | null
+  }
+
+  export type FeedbackAvgAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type FeedbackSumAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type FeedbackMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    recipeId: string | null
+    rating: number | null
+    notes: string | null
+    timestamp: Date | null
+  }
+
+  export type FeedbackMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    recipeId: string | null
+    rating: number | null
+    notes: string | null
+    timestamp: Date | null
+  }
+
+  export type FeedbackCountAggregateOutputType = {
+    id: number
+    userId: number
+    recipeId: number
+    rating: number
+    notes: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type FeedbackAvgAggregateInputType = {
+    rating?: true
+  }
+
+  export type FeedbackSumAggregateInputType = {
+    rating?: true
+  }
+
+  export type FeedbackMinAggregateInputType = {
+    id?: true
+    userId?: true
+    recipeId?: true
+    rating?: true
+    notes?: true
+    timestamp?: true
+  }
+
+  export type FeedbackMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    recipeId?: true
+    rating?: true
+    notes?: true
+    timestamp?: true
+  }
+
+  export type FeedbackCountAggregateInputType = {
+    id?: true
+    userId?: true
+    recipeId?: true
+    rating?: true
+    notes?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type FeedbackAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Feedback to aggregate.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Feedbacks
+    **/
+    _count?: true | FeedbackCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FeedbackAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedbackSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedbackMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedbackMaxAggregateInputType
+  }
+
+  export type GetFeedbackAggregateType<T extends FeedbackAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedback]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedback[P]>
+      : GetScalarType<T[P], AggregateFeedback[P]>
+  }
+
+
+
+
+  export type FeedbackGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedbackWhereInput
+    orderBy?: FeedbackOrderByWithAggregationInput | FeedbackOrderByWithAggregationInput[]
+    by: FeedbackScalarFieldEnum[] | FeedbackScalarFieldEnum
+    having?: FeedbackScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedbackCountAggregateInputType | true
+    _avg?: FeedbackAvgAggregateInputType
+    _sum?: FeedbackSumAggregateInputType
+    _min?: FeedbackMinAggregateInputType
+    _max?: FeedbackMaxAggregateInputType
+  }
+
+  export type FeedbackGroupByOutputType = {
+    id: string
+    userId: string
+    recipeId: string
+    rating: number
+    notes: string | null
+    timestamp: Date
+    _count: FeedbackCountAggregateOutputType | null
+    _avg: FeedbackAvgAggregateOutputType | null
+    _sum: FeedbackSumAggregateOutputType | null
+    _min: FeedbackMinAggregateOutputType | null
+    _max: FeedbackMaxAggregateOutputType | null
+  }
+
+  type GetFeedbackGroupByPayload<T extends FeedbackGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedbackGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedbackGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedbackGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedbackGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    recipeId?: boolean
+    rating?: boolean
+    notes?: boolean
+    timestamp?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    recipe?: boolean | RecipeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedback"]>
+
+  export type FeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    recipeId?: boolean
+    rating?: boolean
+    notes?: boolean
+    timestamp?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    recipe?: boolean | RecipeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedback"]>
+
+  export type FeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    recipeId?: boolean
+    rating?: boolean
+    notes?: boolean
+    timestamp?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    recipe?: boolean | RecipeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["feedback"]>
+
+  export type FeedbackSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    recipeId?: boolean
+    rating?: boolean
+    notes?: boolean
+    timestamp?: boolean
+  }
+
+  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "recipeId" | "rating" | "notes" | "timestamp", ExtArgs["result"]["feedback"]>
+  export type FeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    recipe?: boolean | RecipeDefaultArgs<ExtArgs>
+  }
+  export type FeedbackIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    recipe?: boolean | RecipeDefaultArgs<ExtArgs>
+  }
+  export type FeedbackIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    recipe?: boolean | RecipeDefaultArgs<ExtArgs>
+  }
+
+  export type $FeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Feedback"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      recipe: Prisma.$RecipePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      recipeId: string
+      rating: number
+      notes: string | null
+      timestamp: Date
+    }, ExtArgs["result"]["feedback"]>
+    composites: {}
+  }
+
+  type FeedbackGetPayload<S extends boolean | null | undefined | FeedbackDefaultArgs> = $Result.GetResult<Prisma.$FeedbackPayload, S>
+
+  type FeedbackCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedbackFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedbackCountAggregateInputType | true
+    }
+
+  export interface FeedbackDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Feedback'], meta: { name: 'Feedback' } }
+    /**
+     * Find zero or one Feedback that matches the filter.
+     * @param {FeedbackFindUniqueArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeedbackFindUniqueArgs>(args: SelectSubset<T, FeedbackFindUniqueArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Feedback that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeedbackFindUniqueOrThrowArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeedbackFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedbackFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Feedback that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackFindFirstArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeedbackFindFirstArgs>(args?: SelectSubset<T, FeedbackFindFirstArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Feedback that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackFindFirstOrThrowArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeedbackFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedbackFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Feedbacks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Feedbacks
+     * const feedbacks = await prisma.feedback.findMany()
+     * 
+     * // Get first 10 Feedbacks
+     * const feedbacks = await prisma.feedback.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedbackWithIdOnly = await prisma.feedback.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeedbackFindManyArgs>(args?: SelectSubset<T, FeedbackFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Feedback.
+     * @param {FeedbackCreateArgs} args - Arguments to create a Feedback.
+     * @example
+     * // Create one Feedback
+     * const Feedback = await prisma.feedback.create({
+     *   data: {
+     *     // ... data to create a Feedback
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeedbackCreateArgs>(args: SelectSubset<T, FeedbackCreateArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Feedbacks.
+     * @param {FeedbackCreateManyArgs} args - Arguments to create many Feedbacks.
+     * @example
+     * // Create many Feedbacks
+     * const feedback = await prisma.feedback.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeedbackCreateManyArgs>(args?: SelectSubset<T, FeedbackCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Feedbacks and returns the data saved in the database.
+     * @param {FeedbackCreateManyAndReturnArgs} args - Arguments to create many Feedbacks.
+     * @example
+     * // Create many Feedbacks
+     * const feedback = await prisma.feedback.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Feedbacks and only return the `id`
+     * const feedbackWithIdOnly = await prisma.feedback.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeedbackCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedbackCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Feedback.
+     * @param {FeedbackDeleteArgs} args - Arguments to delete one Feedback.
+     * @example
+     * // Delete one Feedback
+     * const Feedback = await prisma.feedback.delete({
+     *   where: {
+     *     // ... filter to delete one Feedback
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeedbackDeleteArgs>(args: SelectSubset<T, FeedbackDeleteArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Feedback.
+     * @param {FeedbackUpdateArgs} args - Arguments to update one Feedback.
+     * @example
+     * // Update one Feedback
+     * const feedback = await prisma.feedback.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeedbackUpdateArgs>(args: SelectSubset<T, FeedbackUpdateArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Feedbacks.
+     * @param {FeedbackDeleteManyArgs} args - Arguments to filter Feedbacks to delete.
+     * @example
+     * // Delete a few Feedbacks
+     * const { count } = await prisma.feedback.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeedbackDeleteManyArgs>(args?: SelectSubset<T, FeedbackDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Feedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Feedbacks
+     * const feedback = await prisma.feedback.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeedbackUpdateManyArgs>(args: SelectSubset<T, FeedbackUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Feedbacks and returns the data updated in the database.
+     * @param {FeedbackUpdateManyAndReturnArgs} args - Arguments to update many Feedbacks.
+     * @example
+     * // Update many Feedbacks
+     * const feedback = await prisma.feedback.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Feedbacks and only return the `id`
+     * const feedbackWithIdOnly = await prisma.feedback.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeedbackUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedbackUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Feedback.
+     * @param {FeedbackUpsertArgs} args - Arguments to update or create a Feedback.
+     * @example
+     * // Update or create a Feedback
+     * const feedback = await prisma.feedback.upsert({
+     *   create: {
+     *     // ... data to create a Feedback
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Feedback we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeedbackUpsertArgs>(args: SelectSubset<T, FeedbackUpsertArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Feedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackCountArgs} args - Arguments to filter Feedbacks to count.
+     * @example
+     * // Count the number of Feedbacks
+     * const count = await prisma.feedback.count({
+     *   where: {
+     *     // ... the filter for the Feedbacks we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeedbackCountArgs>(
+      args?: Subset<T, FeedbackCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedbackCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Feedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedbackAggregateArgs>(args: Subset<T, FeedbackAggregateArgs>): Prisma.PrismaPromise<GetFeedbackAggregateType<T>>
+
+    /**
+     * Group by Feedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeedbackGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeedbackGroupByArgs['orderBy'] }
+        : { orderBy?: FeedbackGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeedbackGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedbackGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Feedback model
+   */
+  readonly fields: FeedbackFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Feedback.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeedbackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    recipe<T extends RecipeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RecipeDefaultArgs<ExtArgs>>): Prisma__RecipeClient<$Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Feedback model
+   */
+  interface FeedbackFieldRefs {
+    readonly id: FieldRef<"Feedback", 'String'>
+    readonly userId: FieldRef<"Feedback", 'String'>
+    readonly recipeId: FieldRef<"Feedback", 'String'>
+    readonly rating: FieldRef<"Feedback", 'Int'>
+    readonly notes: FieldRef<"Feedback", 'String'>
+    readonly timestamp: FieldRef<"Feedback", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Feedback findUnique
+   */
+  export type FeedbackFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback findUniqueOrThrow
+   */
+  export type FeedbackFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback findFirst
+   */
+  export type FeedbackFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Feedbacks.
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Feedbacks.
+     */
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * Feedback findFirstOrThrow
+   */
+  export type FeedbackFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Feedbacks.
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Feedbacks.
+     */
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * Feedback findMany
+   */
+  export type FeedbackFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * Filter, which Feedbacks to fetch.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Feedbacks.
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * Feedback create
+   */
+  export type FeedbackCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Feedback.
+     */
+    data: XOR<FeedbackCreateInput, FeedbackUncheckedCreateInput>
+  }
+
+  /**
+   * Feedback createMany
+   */
+  export type FeedbackCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Feedbacks.
+     */
+    data: FeedbackCreateManyInput | FeedbackCreateManyInput[]
+  }
+
+  /**
+   * Feedback createManyAndReturn
+   */
+  export type FeedbackCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to create many Feedbacks.
+     */
+    data: FeedbackCreateManyInput | FeedbackCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Feedback update
+   */
+  export type FeedbackUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Feedback.
+     */
+    data: XOR<FeedbackUpdateInput, FeedbackUncheckedUpdateInput>
+    /**
+     * Choose, which Feedback to update.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback updateMany
+   */
+  export type FeedbackUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Feedbacks.
+     */
+    data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which Feedbacks to update
+     */
+    where?: FeedbackWhereInput
+    /**
+     * Limit how many Feedbacks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Feedback updateManyAndReturn
+   */
+  export type FeedbackUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to update Feedbacks.
+     */
+    data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which Feedbacks to update
+     */
+    where?: FeedbackWhereInput
+    /**
+     * Limit how many Feedbacks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Feedback upsert
+   */
+  export type FeedbackUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Feedback to update in case it exists.
+     */
+    where: FeedbackWhereUniqueInput
+    /**
+     * In case the Feedback found by the `where` argument doesn't exist, create a new Feedback with this data.
+     */
+    create: XOR<FeedbackCreateInput, FeedbackUncheckedCreateInput>
+    /**
+     * In case the Feedback was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeedbackUpdateInput, FeedbackUncheckedUpdateInput>
+  }
+
+  /**
+   * Feedback delete
+   */
+  export type FeedbackDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+    /**
+     * Filter which Feedback to delete.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback deleteMany
+   */
+  export type FeedbackDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Feedbacks to delete
+     */
+    where?: FeedbackWhereInput
+    /**
+     * Limit how many Feedbacks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Feedback without action
+   */
+  export type FeedbackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeedbackInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ABTest
+   */
+
+  export type AggregateABTest = {
+    _count: ABTestCountAggregateOutputType | null
+    _min: ABTestMinAggregateOutputType | null
+    _max: ABTestMaxAggregateOutputType | null
+  }
+
+  export type ABTestMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    feature: string | null
+    variant: string | null
+    timestamp: Date | null
+  }
+
+  export type ABTestMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    feature: string | null
+    variant: string | null
+    timestamp: Date | null
+  }
+
+  export type ABTestCountAggregateOutputType = {
+    id: number
+    userId: number
+    feature: number
+    variant: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type ABTestMinAggregateInputType = {
+    id?: true
+    userId?: true
+    feature?: true
+    variant?: true
+    timestamp?: true
+  }
+
+  export type ABTestMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    feature?: true
+    variant?: true
+    timestamp?: true
+  }
+
+  export type ABTestCountAggregateInputType = {
+    id?: true
+    userId?: true
+    feature?: true
+    variant?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type ABTestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ABTest to aggregate.
+     */
+    where?: ABTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTests to fetch.
+     */
+    orderBy?: ABTestOrderByWithRelationInput | ABTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ABTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ABTests
+    **/
+    _count?: true | ABTestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ABTestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ABTestMaxAggregateInputType
+  }
+
+  export type GetABTestAggregateType<T extends ABTestAggregateArgs> = {
+        [P in keyof T & keyof AggregateABTest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateABTest[P]>
+      : GetScalarType<T[P], AggregateABTest[P]>
+  }
+
+
+
+
+  export type ABTestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ABTestWhereInput
+    orderBy?: ABTestOrderByWithAggregationInput | ABTestOrderByWithAggregationInput[]
+    by: ABTestScalarFieldEnum[] | ABTestScalarFieldEnum
+    having?: ABTestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ABTestCountAggregateInputType | true
+    _min?: ABTestMinAggregateInputType
+    _max?: ABTestMaxAggregateInputType
+  }
+
+  export type ABTestGroupByOutputType = {
+    id: string
+    userId: string
+    feature: string
+    variant: string
+    timestamp: Date
+    _count: ABTestCountAggregateOutputType | null
+    _min: ABTestMinAggregateOutputType | null
+    _max: ABTestMaxAggregateOutputType | null
+  }
+
+  type GetABTestGroupByPayload<T extends ABTestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ABTestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ABTestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ABTestGroupByOutputType[P]>
+            : GetScalarType<T[P], ABTestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ABTestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    feature?: boolean
+    variant?: boolean
+    timestamp?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aBTest"]>
+
+  export type ABTestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    feature?: boolean
+    variant?: boolean
+    timestamp?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aBTest"]>
+
+  export type ABTestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    feature?: boolean
+    variant?: boolean
+    timestamp?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["aBTest"]>
+
+  export type ABTestSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    feature?: boolean
+    variant?: boolean
+    timestamp?: boolean
+  }
+
+  export type ABTestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "feature" | "variant" | "timestamp", ExtArgs["result"]["aBTest"]>
+  export type ABTestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ABTestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ABTestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ABTestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ABTest"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      feature: string
+      variant: string
+      timestamp: Date
+    }, ExtArgs["result"]["aBTest"]>
+    composites: {}
+  }
+
+  type ABTestGetPayload<S extends boolean | null | undefined | ABTestDefaultArgs> = $Result.GetResult<Prisma.$ABTestPayload, S>
+
+  type ABTestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ABTestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ABTestCountAggregateInputType | true
+    }
+
+  export interface ABTestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ABTest'], meta: { name: 'ABTest' } }
+    /**
+     * Find zero or one ABTest that matches the filter.
+     * @param {ABTestFindUniqueArgs} args - Arguments to find a ABTest
+     * @example
+     * // Get one ABTest
+     * const aBTest = await prisma.aBTest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ABTestFindUniqueArgs>(args: SelectSubset<T, ABTestFindUniqueArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ABTest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ABTestFindUniqueOrThrowArgs} args - Arguments to find a ABTest
+     * @example
+     * // Get one ABTest
+     * const aBTest = await prisma.aBTest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ABTestFindUniqueOrThrowArgs>(args: SelectSubset<T, ABTestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ABTest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestFindFirstArgs} args - Arguments to find a ABTest
+     * @example
+     * // Get one ABTest
+     * const aBTest = await prisma.aBTest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ABTestFindFirstArgs>(args?: SelectSubset<T, ABTestFindFirstArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ABTest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestFindFirstOrThrowArgs} args - Arguments to find a ABTest
+     * @example
+     * // Get one ABTest
+     * const aBTest = await prisma.aBTest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ABTestFindFirstOrThrowArgs>(args?: SelectSubset<T, ABTestFindFirstOrThrowArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ABTests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ABTests
+     * const aBTests = await prisma.aBTest.findMany()
+     * 
+     * // Get first 10 ABTests
+     * const aBTests = await prisma.aBTest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aBTestWithIdOnly = await prisma.aBTest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ABTestFindManyArgs>(args?: SelectSubset<T, ABTestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ABTest.
+     * @param {ABTestCreateArgs} args - Arguments to create a ABTest.
+     * @example
+     * // Create one ABTest
+     * const ABTest = await prisma.aBTest.create({
+     *   data: {
+     *     // ... data to create a ABTest
+     *   }
+     * })
+     * 
+     */
+    create<T extends ABTestCreateArgs>(args: SelectSubset<T, ABTestCreateArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ABTests.
+     * @param {ABTestCreateManyArgs} args - Arguments to create many ABTests.
+     * @example
+     * // Create many ABTests
+     * const aBTest = await prisma.aBTest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ABTestCreateManyArgs>(args?: SelectSubset<T, ABTestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ABTests and returns the data saved in the database.
+     * @param {ABTestCreateManyAndReturnArgs} args - Arguments to create many ABTests.
+     * @example
+     * // Create many ABTests
+     * const aBTest = await prisma.aBTest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ABTests and only return the `id`
+     * const aBTestWithIdOnly = await prisma.aBTest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ABTestCreateManyAndReturnArgs>(args?: SelectSubset<T, ABTestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ABTest.
+     * @param {ABTestDeleteArgs} args - Arguments to delete one ABTest.
+     * @example
+     * // Delete one ABTest
+     * const ABTest = await prisma.aBTest.delete({
+     *   where: {
+     *     // ... filter to delete one ABTest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ABTestDeleteArgs>(args: SelectSubset<T, ABTestDeleteArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ABTest.
+     * @param {ABTestUpdateArgs} args - Arguments to update one ABTest.
+     * @example
+     * // Update one ABTest
+     * const aBTest = await prisma.aBTest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ABTestUpdateArgs>(args: SelectSubset<T, ABTestUpdateArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ABTests.
+     * @param {ABTestDeleteManyArgs} args - Arguments to filter ABTests to delete.
+     * @example
+     * // Delete a few ABTests
+     * const { count } = await prisma.aBTest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ABTestDeleteManyArgs>(args?: SelectSubset<T, ABTestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ABTests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ABTests
+     * const aBTest = await prisma.aBTest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ABTestUpdateManyArgs>(args: SelectSubset<T, ABTestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ABTests and returns the data updated in the database.
+     * @param {ABTestUpdateManyAndReturnArgs} args - Arguments to update many ABTests.
+     * @example
+     * // Update many ABTests
+     * const aBTest = await prisma.aBTest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ABTests and only return the `id`
+     * const aBTestWithIdOnly = await prisma.aBTest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ABTestUpdateManyAndReturnArgs>(args: SelectSubset<T, ABTestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ABTest.
+     * @param {ABTestUpsertArgs} args - Arguments to update or create a ABTest.
+     * @example
+     * // Update or create a ABTest
+     * const aBTest = await prisma.aBTest.upsert({
+     *   create: {
+     *     // ... data to create a ABTest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ABTest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ABTestUpsertArgs>(args: SelectSubset<T, ABTestUpsertArgs<ExtArgs>>): Prisma__ABTestClient<$Result.GetResult<Prisma.$ABTestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ABTests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestCountArgs} args - Arguments to filter ABTests to count.
+     * @example
+     * // Count the number of ABTests
+     * const count = await prisma.aBTest.count({
+     *   where: {
+     *     // ... the filter for the ABTests we want to count
+     *   }
+     * })
+    **/
+    count<T extends ABTestCountArgs>(
+      args?: Subset<T, ABTestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ABTestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ABTest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ABTestAggregateArgs>(args: Subset<T, ABTestAggregateArgs>): Prisma.PrismaPromise<GetABTestAggregateType<T>>
+
+    /**
+     * Group by ABTest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ABTestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ABTestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ABTestGroupByArgs['orderBy'] }
+        : { orderBy?: ABTestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ABTestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetABTestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ABTest model
+   */
+  readonly fields: ABTestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ABTest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ABTestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ABTest model
+   */
+  interface ABTestFieldRefs {
+    readonly id: FieldRef<"ABTest", 'String'>
+    readonly userId: FieldRef<"ABTest", 'String'>
+    readonly feature: FieldRef<"ABTest", 'String'>
+    readonly variant: FieldRef<"ABTest", 'String'>
+    readonly timestamp: FieldRef<"ABTest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ABTest findUnique
+   */
+  export type ABTestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * Filter, which ABTest to fetch.
+     */
+    where: ABTestWhereUniqueInput
+  }
+
+  /**
+   * ABTest findUniqueOrThrow
+   */
+  export type ABTestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * Filter, which ABTest to fetch.
+     */
+    where: ABTestWhereUniqueInput
+  }
+
+  /**
+   * ABTest findFirst
+   */
+  export type ABTestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * Filter, which ABTest to fetch.
+     */
+    where?: ABTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTests to fetch.
+     */
+    orderBy?: ABTestOrderByWithRelationInput | ABTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ABTests.
+     */
+    cursor?: ABTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ABTests.
+     */
+    distinct?: ABTestScalarFieldEnum | ABTestScalarFieldEnum[]
+  }
+
+  /**
+   * ABTest findFirstOrThrow
+   */
+  export type ABTestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * Filter, which ABTest to fetch.
+     */
+    where?: ABTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTests to fetch.
+     */
+    orderBy?: ABTestOrderByWithRelationInput | ABTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ABTests.
+     */
+    cursor?: ABTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ABTests.
+     */
+    distinct?: ABTestScalarFieldEnum | ABTestScalarFieldEnum[]
+  }
+
+  /**
+   * ABTest findMany
+   */
+  export type ABTestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * Filter, which ABTests to fetch.
+     */
+    where?: ABTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ABTests to fetch.
+     */
+    orderBy?: ABTestOrderByWithRelationInput | ABTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ABTests.
+     */
+    cursor?: ABTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ABTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ABTests.
+     */
+    skip?: number
+    distinct?: ABTestScalarFieldEnum | ABTestScalarFieldEnum[]
+  }
+
+  /**
+   * ABTest create
+   */
+  export type ABTestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ABTest.
+     */
+    data: XOR<ABTestCreateInput, ABTestUncheckedCreateInput>
+  }
+
+  /**
+   * ABTest createMany
+   */
+  export type ABTestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ABTests.
+     */
+    data: ABTestCreateManyInput | ABTestCreateManyInput[]
+  }
+
+  /**
+   * ABTest createManyAndReturn
+   */
+  export type ABTestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * The data used to create many ABTests.
+     */
+    data: ABTestCreateManyInput | ABTestCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ABTest update
+   */
+  export type ABTestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ABTest.
+     */
+    data: XOR<ABTestUpdateInput, ABTestUncheckedUpdateInput>
+    /**
+     * Choose, which ABTest to update.
+     */
+    where: ABTestWhereUniqueInput
+  }
+
+  /**
+   * ABTest updateMany
+   */
+  export type ABTestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ABTests.
+     */
+    data: XOR<ABTestUpdateManyMutationInput, ABTestUncheckedUpdateManyInput>
+    /**
+     * Filter which ABTests to update
+     */
+    where?: ABTestWhereInput
+    /**
+     * Limit how many ABTests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ABTest updateManyAndReturn
+   */
+  export type ABTestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * The data used to update ABTests.
+     */
+    data: XOR<ABTestUpdateManyMutationInput, ABTestUncheckedUpdateManyInput>
+    /**
+     * Filter which ABTests to update
+     */
+    where?: ABTestWhereInput
+    /**
+     * Limit how many ABTests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ABTest upsert
+   */
+  export type ABTestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ABTest to update in case it exists.
+     */
+    where: ABTestWhereUniqueInput
+    /**
+     * In case the ABTest found by the `where` argument doesn't exist, create a new ABTest with this data.
+     */
+    create: XOR<ABTestCreateInput, ABTestUncheckedCreateInput>
+    /**
+     * In case the ABTest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ABTestUpdateInput, ABTestUncheckedUpdateInput>
+  }
+
+  /**
+   * ABTest delete
+   */
+  export type ABTestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+    /**
+     * Filter which ABTest to delete.
+     */
+    where: ABTestWhereUniqueInput
+  }
+
+  /**
+   * ABTest deleteMany
+   */
+  export type ABTestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ABTests to delete
+     */
+    where?: ABTestWhereInput
+    /**
+     * Limit how many ABTests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ABTest without action
+   */
+  export type ABTestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ABTest
+     */
+    select?: ABTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ABTest
+     */
+    omit?: ABTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ABTestInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -36645,7 +39118,8 @@ export namespace Prisma {
     name: 'name',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    primaryGoal: 'primaryGoal'
+    primaryGoal: 'primaryGoal',
+    preferencesJson: 'preferencesJson'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -37006,6 +39480,29 @@ export namespace Prisma {
   export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
 
 
+  export const FeedbackScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    recipeId: 'recipeId',
+    rating: 'rating',
+    notes: 'notes',
+    timestamp: 'timestamp'
+  };
+
+  export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
+
+
+  export const ABTestScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    feature: 'feature',
+    variant: 'variant',
+    timestamp: 'timestamp'
+  };
+
+  export type ABTestScalarFieldEnum = (typeof ABTestScalarFieldEnum)[keyof typeof ABTestScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -37166,6 +39663,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     primaryGoal?: EnumDietaryGoalNullableFilter<"User"> | $Enums.DietaryGoal | null
+    preferencesJson?: StringNullableFilter<"User"> | string | null
     healthConditions?: UserHealthConditionListRelationFilter
     allergies?: UserAllergyListRelationFilter
     preferences?: XOR<UserPreferencesNullableScalarRelationFilter, UserPreferencesWhereInput> | null
@@ -37173,6 +39671,8 @@ export namespace Prisma {
     shoppingLists?: ShoppingListListRelationFilter
     favoriteRecipes?: UserFavoriteRecipeListRelationFilter
     subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
+    feedbacks?: FeedbackListRelationFilter
+    abTests?: ABTestListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -37182,6 +39682,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     primaryGoal?: SortOrderInput | SortOrder
+    preferencesJson?: SortOrderInput | SortOrder
     healthConditions?: UserHealthConditionOrderByRelationAggregateInput
     allergies?: UserAllergyOrderByRelationAggregateInput
     preferences?: UserPreferencesOrderByWithRelationInput
@@ -37189,6 +39690,8 @@ export namespace Prisma {
     shoppingLists?: ShoppingListOrderByRelationAggregateInput
     favoriteRecipes?: UserFavoriteRecipeOrderByRelationAggregateInput
     subscription?: SubscriptionOrderByWithRelationInput
+    feedbacks?: FeedbackOrderByRelationAggregateInput
+    abTests?: ABTestOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -37201,6 +39704,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     primaryGoal?: EnumDietaryGoalNullableFilter<"User"> | $Enums.DietaryGoal | null
+    preferencesJson?: StringNullableFilter<"User"> | string | null
     healthConditions?: UserHealthConditionListRelationFilter
     allergies?: UserAllergyListRelationFilter
     preferences?: XOR<UserPreferencesNullableScalarRelationFilter, UserPreferencesWhereInput> | null
@@ -37208,6 +39712,8 @@ export namespace Prisma {
     shoppingLists?: ShoppingListListRelationFilter
     favoriteRecipes?: UserFavoriteRecipeListRelationFilter
     subscription?: XOR<SubscriptionNullableScalarRelationFilter, SubscriptionWhereInput> | null
+    feedbacks?: FeedbackListRelationFilter
+    abTests?: ABTestListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -37217,6 +39723,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     primaryGoal?: SortOrderInput | SortOrder
+    preferencesJson?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -37232,6 +39739,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     primaryGoal?: EnumDietaryGoalNullableWithAggregatesFilter<"User"> | $Enums.DietaryGoal | null
+    preferencesJson?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type UserPreferencesWhereInput = {
@@ -37998,6 +40506,7 @@ export namespace Prisma {
     nutritionalInfo?: XOR<NutritionalInfoNullableScalarRelationFilter, NutritionalInfoWhereInput> | null
     favorites?: UserFavoriteRecipeListRelationFilter
     mealPlanItems?: MealPlanItemListRelationFilter
+    feedbacks?: FeedbackListRelationFilter
   }
 
   export type RecipeOrderByWithRelationInput = {
@@ -38024,6 +40533,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoOrderByWithRelationInput
     favorites?: UserFavoriteRecipeOrderByRelationAggregateInput
     mealPlanItems?: MealPlanItemOrderByRelationAggregateInput
+    feedbacks?: FeedbackOrderByRelationAggregateInput
   }
 
   export type RecipeWhereUniqueInput = Prisma.AtLeast<{
@@ -38053,6 +40563,7 @@ export namespace Prisma {
     nutritionalInfo?: XOR<NutritionalInfoNullableScalarRelationFilter, NutritionalInfoWhereInput> | null
     favorites?: UserFavoriteRecipeListRelationFilter
     mealPlanItems?: MealPlanItemListRelationFilter
+    feedbacks?: FeedbackListRelationFilter
   }, "id">
 
   export type RecipeOrderByWithAggregationInput = {
@@ -39115,6 +41626,127 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Subscription"> | Date | string
   }
 
+  export type FeedbackWhereInput = {
+    AND?: FeedbackWhereInput | FeedbackWhereInput[]
+    OR?: FeedbackWhereInput[]
+    NOT?: FeedbackWhereInput | FeedbackWhereInput[]
+    id?: StringFilter<"Feedback"> | string
+    userId?: StringFilter<"Feedback"> | string
+    recipeId?: StringFilter<"Feedback"> | string
+    rating?: IntFilter<"Feedback"> | number
+    notes?: StringNullableFilter<"Feedback"> | string | null
+    timestamp?: DateTimeFilter<"Feedback"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    recipe?: XOR<RecipeScalarRelationFilter, RecipeWhereInput>
+  }
+
+  export type FeedbackOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    recipeId?: SortOrder
+    rating?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    user?: UserOrderByWithRelationInput
+    recipe?: RecipeOrderByWithRelationInput
+  }
+
+  export type FeedbackWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_recipeId?: FeedbackUserIdRecipeIdCompoundUniqueInput
+    AND?: FeedbackWhereInput | FeedbackWhereInput[]
+    OR?: FeedbackWhereInput[]
+    NOT?: FeedbackWhereInput | FeedbackWhereInput[]
+    userId?: StringFilter<"Feedback"> | string
+    recipeId?: StringFilter<"Feedback"> | string
+    rating?: IntFilter<"Feedback"> | number
+    notes?: StringNullableFilter<"Feedback"> | string | null
+    timestamp?: DateTimeFilter<"Feedback"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    recipe?: XOR<RecipeScalarRelationFilter, RecipeWhereInput>
+  }, "id" | "userId_recipeId">
+
+  export type FeedbackOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    recipeId?: SortOrder
+    rating?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    _count?: FeedbackCountOrderByAggregateInput
+    _avg?: FeedbackAvgOrderByAggregateInput
+    _max?: FeedbackMaxOrderByAggregateInput
+    _min?: FeedbackMinOrderByAggregateInput
+    _sum?: FeedbackSumOrderByAggregateInput
+  }
+
+  export type FeedbackScalarWhereWithAggregatesInput = {
+    AND?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
+    OR?: FeedbackScalarWhereWithAggregatesInput[]
+    NOT?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Feedback"> | string
+    userId?: StringWithAggregatesFilter<"Feedback"> | string
+    recipeId?: StringWithAggregatesFilter<"Feedback"> | string
+    rating?: IntWithAggregatesFilter<"Feedback"> | number
+    notes?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    timestamp?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
+  }
+
+  export type ABTestWhereInput = {
+    AND?: ABTestWhereInput | ABTestWhereInput[]
+    OR?: ABTestWhereInput[]
+    NOT?: ABTestWhereInput | ABTestWhereInput[]
+    id?: StringFilter<"ABTest"> | string
+    userId?: StringFilter<"ABTest"> | string
+    feature?: StringFilter<"ABTest"> | string
+    variant?: StringFilter<"ABTest"> | string
+    timestamp?: DateTimeFilter<"ABTest"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ABTestOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    feature?: SortOrder
+    variant?: SortOrder
+    timestamp?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ABTestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ABTestWhereInput | ABTestWhereInput[]
+    OR?: ABTestWhereInput[]
+    NOT?: ABTestWhereInput | ABTestWhereInput[]
+    userId?: StringFilter<"ABTest"> | string
+    feature?: StringFilter<"ABTest"> | string
+    variant?: StringFilter<"ABTest"> | string
+    timestamp?: DateTimeFilter<"ABTest"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ABTestOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    feature?: SortOrder
+    variant?: SortOrder
+    timestamp?: SortOrder
+    _count?: ABTestCountOrderByAggregateInput
+    _max?: ABTestMaxOrderByAggregateInput
+    _min?: ABTestMinOrderByAggregateInput
+  }
+
+  export type ABTestScalarWhereWithAggregatesInput = {
+    AND?: ABTestScalarWhereWithAggregatesInput | ABTestScalarWhereWithAggregatesInput[]
+    OR?: ABTestScalarWhereWithAggregatesInput[]
+    NOT?: ABTestScalarWhereWithAggregatesInput | ABTestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ABTest"> | string
+    userId?: StringWithAggregatesFilter<"ABTest"> | string
+    feature?: StringWithAggregatesFilter<"ABTest"> | string
+    variant?: StringWithAggregatesFilter<"ABTest"> | string
+    timestamp?: DateTimeWithAggregatesFilter<"ABTest"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -39122,6 +41754,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
     allergies?: UserAllergyCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesCreateNestedOneWithoutUserInput
@@ -39129,6 +41762,8 @@ export namespace Prisma {
     shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -39138,6 +41773,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
     allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
@@ -39145,6 +41781,8 @@ export namespace Prisma {
     shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -39154,6 +41792,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
@@ -39161,6 +41800,8 @@ export namespace Prisma {
     shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -39170,6 +41811,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
@@ -39177,6 +41819,8 @@ export namespace Prisma {
     shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -39186,6 +41830,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -39195,6 +41840,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -39204,6 +41850,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserPreferencesCreateInput = {
@@ -40021,6 +42668,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateInput = {
@@ -40047,6 +42695,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUpdateInput = {
@@ -40073,6 +42722,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateInput = {
@@ -40099,6 +42749,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeCreateManyInput = {
@@ -41165,6 +43816,122 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FeedbackCreateInput = {
+    id?: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+    user: UserCreateNestedOneWithoutFeedbacksInput
+    recipe: RecipeCreateNestedOneWithoutFeedbacksInput
+  }
+
+  export type FeedbackUncheckedCreateInput = {
+    id?: string
+    userId: string
+    recipeId: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+  }
+
+  export type FeedbackUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFeedbacksNestedInput
+    recipe?: RecipeUpdateOneRequiredWithoutFeedbacksNestedInput
+  }
+
+  export type FeedbackUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    recipeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedbackCreateManyInput = {
+    id?: string
+    userId: string
+    recipeId: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+  }
+
+  export type FeedbackUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedbackUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    recipeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestCreateInput = {
+    id?: string
+    feature: string
+    variant: string
+    timestamp?: Date | string
+    user: UserCreateNestedOneWithoutAbTestsInput
+  }
+
+  export type ABTestUncheckedCreateInput = {
+    id?: string
+    userId: string
+    feature: string
+    variant: string
+    timestamp?: Date | string
+  }
+
+  export type ABTestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feature?: StringFieldUpdateOperationsInput | string
+    variant?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAbTestsNestedInput
+  }
+
+  export type ABTestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    feature?: StringFieldUpdateOperationsInput | string
+    variant?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestCreateManyInput = {
+    id?: string
+    userId: string
+    feature: string
+    variant: string
+    timestamp?: Date | string
+  }
+
+  export type ABTestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feature?: StringFieldUpdateOperationsInput | string
+    variant?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    feature?: StringFieldUpdateOperationsInput | string
+    variant?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -41251,6 +44018,18 @@ export namespace Prisma {
     isNot?: SubscriptionWhereInput | null
   }
 
+  export type FeedbackListRelationFilter = {
+    every?: FeedbackWhereInput
+    some?: FeedbackWhereInput
+    none?: FeedbackWhereInput
+  }
+
+  export type ABTestListRelationFilter = {
+    every?: ABTestWhereInput
+    some?: ABTestWhereInput
+    none?: ABTestWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -41276,6 +44055,14 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type FeedbackOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ABTestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -41283,6 +44070,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     primaryGoal?: SortOrder
+    preferencesJson?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -41292,6 +44080,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     primaryGoal?: SortOrder
+    preferencesJson?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -41301,6 +44090,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     primaryGoal?: SortOrder
+    preferencesJson?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -42900,6 +45690,70 @@ export namespace Prisma {
     _max?: NestedEnumSubscriptionTierFilter<$PrismaModel>
   }
 
+  export type FeedbackUserIdRecipeIdCompoundUniqueInput = {
+    userId: string
+    recipeId: string
+  }
+
+  export type FeedbackCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    recipeId?: SortOrder
+    rating?: SortOrder
+    notes?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type FeedbackAvgOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type FeedbackMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    recipeId?: SortOrder
+    rating?: SortOrder
+    notes?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type FeedbackMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    recipeId?: SortOrder
+    rating?: SortOrder
+    notes?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type FeedbackSumOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type ABTestCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    feature?: SortOrder
+    variant?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type ABTestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    feature?: SortOrder
+    variant?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type ABTestMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    feature?: SortOrder
+    variant?: SortOrder
+    timestamp?: SortOrder
+  }
+
   export type UserHealthConditionCreateNestedManyWithoutUserInput = {
     create?: XOR<UserHealthConditionCreateWithoutUserInput, UserHealthConditionUncheckedCreateWithoutUserInput> | UserHealthConditionCreateWithoutUserInput[] | UserHealthConditionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UserHealthConditionCreateOrConnectWithoutUserInput | UserHealthConditionCreateOrConnectWithoutUserInput[]
@@ -42947,6 +45801,20 @@ export namespace Prisma {
     connect?: SubscriptionWhereUniqueInput
   }
 
+  export type FeedbackCreateNestedManyWithoutUserInput = {
+    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
+    createMany?: FeedbackCreateManyUserInputEnvelope
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+  }
+
+  export type ABTestCreateNestedManyWithoutUserInput = {
+    create?: XOR<ABTestCreateWithoutUserInput, ABTestUncheckedCreateWithoutUserInput> | ABTestCreateWithoutUserInput[] | ABTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ABTestCreateOrConnectWithoutUserInput | ABTestCreateOrConnectWithoutUserInput[]
+    createMany?: ABTestCreateManyUserInputEnvelope
+    connect?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+  }
+
   export type UserHealthConditionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<UserHealthConditionCreateWithoutUserInput, UserHealthConditionUncheckedCreateWithoutUserInput> | UserHealthConditionCreateWithoutUserInput[] | UserHealthConditionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UserHealthConditionCreateOrConnectWithoutUserInput | UserHealthConditionCreateOrConnectWithoutUserInput[]
@@ -42992,6 +45860,20 @@ export namespace Prisma {
     create?: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
     connectOrCreate?: SubscriptionCreateOrConnectWithoutUserInput
     connect?: SubscriptionWhereUniqueInput
+  }
+
+  export type FeedbackUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
+    createMany?: FeedbackCreateManyUserInputEnvelope
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+  }
+
+  export type ABTestUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ABTestCreateWithoutUserInput, ABTestUncheckedCreateWithoutUserInput> | ABTestCreateWithoutUserInput[] | ABTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ABTestCreateOrConnectWithoutUserInput | ABTestCreateOrConnectWithoutUserInput[]
+    createMany?: ABTestCreateManyUserInputEnvelope
+    connect?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -43100,6 +45982,34 @@ export namespace Prisma {
     update?: XOR<XOR<SubscriptionUpdateToOneWithWhereWithoutUserInput, SubscriptionUpdateWithoutUserInput>, SubscriptionUncheckedUpdateWithoutUserInput>
   }
 
+  export type FeedbackUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
+    upsert?: FeedbackUpsertWithWhereUniqueWithoutUserInput | FeedbackUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FeedbackCreateManyUserInputEnvelope
+    set?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    disconnect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    delete?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    update?: FeedbackUpdateWithWhereUniqueWithoutUserInput | FeedbackUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FeedbackUpdateManyWithWhereWithoutUserInput | FeedbackUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
+  }
+
+  export type ABTestUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ABTestCreateWithoutUserInput, ABTestUncheckedCreateWithoutUserInput> | ABTestCreateWithoutUserInput[] | ABTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ABTestCreateOrConnectWithoutUserInput | ABTestCreateOrConnectWithoutUserInput[]
+    upsert?: ABTestUpsertWithWhereUniqueWithoutUserInput | ABTestUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ABTestCreateManyUserInputEnvelope
+    set?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    disconnect?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    delete?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    connect?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    update?: ABTestUpdateWithWhereUniqueWithoutUserInput | ABTestUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ABTestUpdateManyWithWhereWithoutUserInput | ABTestUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ABTestScalarWhereInput | ABTestScalarWhereInput[]
+  }
+
   export type UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<UserHealthConditionCreateWithoutUserInput, UserHealthConditionUncheckedCreateWithoutUserInput> | UserHealthConditionCreateWithoutUserInput[] | UserHealthConditionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UserHealthConditionCreateOrConnectWithoutUserInput | UserHealthConditionCreateOrConnectWithoutUserInput[]
@@ -43188,6 +46098,34 @@ export namespace Prisma {
     delete?: SubscriptionWhereInput | boolean
     connect?: SubscriptionWhereUniqueInput
     update?: XOR<XOR<SubscriptionUpdateToOneWithWhereWithoutUserInput, SubscriptionUpdateWithoutUserInput>, SubscriptionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FeedbackUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
+    upsert?: FeedbackUpsertWithWhereUniqueWithoutUserInput | FeedbackUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FeedbackCreateManyUserInputEnvelope
+    set?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    disconnect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    delete?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    update?: FeedbackUpdateWithWhereUniqueWithoutUserInput | FeedbackUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FeedbackUpdateManyWithWhereWithoutUserInput | FeedbackUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
+  }
+
+  export type ABTestUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ABTestCreateWithoutUserInput, ABTestUncheckedCreateWithoutUserInput> | ABTestCreateWithoutUserInput[] | ABTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ABTestCreateOrConnectWithoutUserInput | ABTestCreateOrConnectWithoutUserInput[]
+    upsert?: ABTestUpsertWithWhereUniqueWithoutUserInput | ABTestUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ABTestCreateManyUserInputEnvelope
+    set?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    disconnect?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    delete?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    connect?: ABTestWhereUniqueInput | ABTestWhereUniqueInput[]
+    update?: ABTestUpdateWithWhereUniqueWithoutUserInput | ABTestUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ABTestUpdateManyWithWhereWithoutUserInput | ABTestUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ABTestScalarWhereInput | ABTestScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPreferencesInput = {
@@ -43701,6 +46639,13 @@ export namespace Prisma {
     connect?: MealPlanItemWhereUniqueInput | MealPlanItemWhereUniqueInput[]
   }
 
+  export type FeedbackCreateNestedManyWithoutRecipeInput = {
+    create?: XOR<FeedbackCreateWithoutRecipeInput, FeedbackUncheckedCreateWithoutRecipeInput> | FeedbackCreateWithoutRecipeInput[] | FeedbackUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutRecipeInput | FeedbackCreateOrConnectWithoutRecipeInput[]
+    createMany?: FeedbackCreateManyRecipeInputEnvelope
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+  }
+
   export type RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput = {
     create?: XOR<RecipeIngredientCreateWithoutRecipeInput, RecipeIngredientUncheckedCreateWithoutRecipeInput> | RecipeIngredientCreateWithoutRecipeInput[] | RecipeIngredientUncheckedCreateWithoutRecipeInput[]
     connectOrCreate?: RecipeIngredientCreateOrConnectWithoutRecipeInput | RecipeIngredientCreateOrConnectWithoutRecipeInput[]
@@ -43768,6 +46713,13 @@ export namespace Prisma {
     connectOrCreate?: MealPlanItemCreateOrConnectWithoutRecipeInput | MealPlanItemCreateOrConnectWithoutRecipeInput[]
     createMany?: MealPlanItemCreateManyRecipeInputEnvelope
     connect?: MealPlanItemWhereUniqueInput | MealPlanItemWhereUniqueInput[]
+  }
+
+  export type FeedbackUncheckedCreateNestedManyWithoutRecipeInput = {
+    create?: XOR<FeedbackCreateWithoutRecipeInput, FeedbackUncheckedCreateWithoutRecipeInput> | FeedbackCreateWithoutRecipeInput[] | FeedbackUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutRecipeInput | FeedbackCreateOrConnectWithoutRecipeInput[]
+    createMany?: FeedbackCreateManyRecipeInputEnvelope
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
   }
 
   export type RecipeIngredientUpdateManyWithoutRecipeNestedInput = {
@@ -43906,6 +46858,20 @@ export namespace Prisma {
     deleteMany?: MealPlanItemScalarWhereInput | MealPlanItemScalarWhereInput[]
   }
 
+  export type FeedbackUpdateManyWithoutRecipeNestedInput = {
+    create?: XOR<FeedbackCreateWithoutRecipeInput, FeedbackUncheckedCreateWithoutRecipeInput> | FeedbackCreateWithoutRecipeInput[] | FeedbackUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutRecipeInput | FeedbackCreateOrConnectWithoutRecipeInput[]
+    upsert?: FeedbackUpsertWithWhereUniqueWithoutRecipeInput | FeedbackUpsertWithWhereUniqueWithoutRecipeInput[]
+    createMany?: FeedbackCreateManyRecipeInputEnvelope
+    set?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    disconnect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    delete?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    update?: FeedbackUpdateWithWhereUniqueWithoutRecipeInput | FeedbackUpdateWithWhereUniqueWithoutRecipeInput[]
+    updateMany?: FeedbackUpdateManyWithWhereWithoutRecipeInput | FeedbackUpdateManyWithWhereWithoutRecipeInput[]
+    deleteMany?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
+  }
+
   export type RecipeIngredientUncheckedUpdateManyWithoutRecipeNestedInput = {
     create?: XOR<RecipeIngredientCreateWithoutRecipeInput, RecipeIngredientUncheckedCreateWithoutRecipeInput> | RecipeIngredientCreateWithoutRecipeInput[] | RecipeIngredientUncheckedCreateWithoutRecipeInput[]
     connectOrCreate?: RecipeIngredientCreateOrConnectWithoutRecipeInput | RecipeIngredientCreateOrConnectWithoutRecipeInput[]
@@ -44040,6 +47006,20 @@ export namespace Prisma {
     update?: MealPlanItemUpdateWithWhereUniqueWithoutRecipeInput | MealPlanItemUpdateWithWhereUniqueWithoutRecipeInput[]
     updateMany?: MealPlanItemUpdateManyWithWhereWithoutRecipeInput | MealPlanItemUpdateManyWithWhereWithoutRecipeInput[]
     deleteMany?: MealPlanItemScalarWhereInput | MealPlanItemScalarWhereInput[]
+  }
+
+  export type FeedbackUncheckedUpdateManyWithoutRecipeNestedInput = {
+    create?: XOR<FeedbackCreateWithoutRecipeInput, FeedbackUncheckedCreateWithoutRecipeInput> | FeedbackCreateWithoutRecipeInput[] | FeedbackUncheckedCreateWithoutRecipeInput[]
+    connectOrCreate?: FeedbackCreateOrConnectWithoutRecipeInput | FeedbackCreateOrConnectWithoutRecipeInput[]
+    upsert?: FeedbackUpsertWithWhereUniqueWithoutRecipeInput | FeedbackUpsertWithWhereUniqueWithoutRecipeInput[]
+    createMany?: FeedbackCreateManyRecipeInputEnvelope
+    set?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    disconnect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    delete?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
+    update?: FeedbackUpdateWithWhereUniqueWithoutRecipeInput | FeedbackUpdateWithWhereUniqueWithoutRecipeInput[]
+    updateMany?: FeedbackUpdateManyWithWhereWithoutRecipeInput | FeedbackUpdateManyWithWhereWithoutRecipeInput[]
+    deleteMany?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
   }
 
   export type RecipeCreateNestedOneWithoutIngredientsInput = {
@@ -44634,6 +47614,48 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutSubscriptionInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSubscriptionInput, UserUpdateWithoutSubscriptionInput>, UserUncheckedUpdateWithoutSubscriptionInput>
+  }
+
+  export type UserCreateNestedOneWithoutFeedbacksInput = {
+    create?: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFeedbacksInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type RecipeCreateNestedOneWithoutFeedbacksInput = {
+    create?: XOR<RecipeCreateWithoutFeedbacksInput, RecipeUncheckedCreateWithoutFeedbacksInput>
+    connectOrCreate?: RecipeCreateOrConnectWithoutFeedbacksInput
+    connect?: RecipeWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutFeedbacksNestedInput = {
+    create?: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFeedbacksInput
+    upsert?: UserUpsertWithoutFeedbacksInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFeedbacksInput, UserUpdateWithoutFeedbacksInput>, UserUncheckedUpdateWithoutFeedbacksInput>
+  }
+
+  export type RecipeUpdateOneRequiredWithoutFeedbacksNestedInput = {
+    create?: XOR<RecipeCreateWithoutFeedbacksInput, RecipeUncheckedCreateWithoutFeedbacksInput>
+    connectOrCreate?: RecipeCreateOrConnectWithoutFeedbacksInput
+    upsert?: RecipeUpsertWithoutFeedbacksInput
+    connect?: RecipeWhereUniqueInput
+    update?: XOR<XOR<RecipeUpdateToOneWithWhereWithoutFeedbacksInput, RecipeUpdateWithoutFeedbacksInput>, RecipeUncheckedUpdateWithoutFeedbacksInput>
+  }
+
+  export type UserCreateNestedOneWithoutAbTestsInput = {
+    create?: XOR<UserCreateWithoutAbTestsInput, UserUncheckedCreateWithoutAbTestsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAbTestsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutAbTestsNestedInput = {
+    create?: XOR<UserCreateWithoutAbTestsInput, UserUncheckedCreateWithoutAbTestsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAbTestsInput
+    upsert?: UserUpsertWithoutAbTestsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAbTestsInput, UserUpdateWithoutAbTestsInput>, UserUncheckedUpdateWithoutAbTestsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -45319,6 +48341,54 @@ export namespace Prisma {
     create: XOR<SubscriptionCreateWithoutUserInput, SubscriptionUncheckedCreateWithoutUserInput>
   }
 
+  export type FeedbackCreateWithoutUserInput = {
+    id?: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+    recipe: RecipeCreateNestedOneWithoutFeedbacksInput
+  }
+
+  export type FeedbackUncheckedCreateWithoutUserInput = {
+    id?: string
+    recipeId: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+  }
+
+  export type FeedbackCreateOrConnectWithoutUserInput = {
+    where: FeedbackWhereUniqueInput
+    create: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput>
+  }
+
+  export type FeedbackCreateManyUserInputEnvelope = {
+    data: FeedbackCreateManyUserInput | FeedbackCreateManyUserInput[]
+  }
+
+  export type ABTestCreateWithoutUserInput = {
+    id?: string
+    feature: string
+    variant: string
+    timestamp?: Date | string
+  }
+
+  export type ABTestUncheckedCreateWithoutUserInput = {
+    id?: string
+    feature: string
+    variant: string
+    timestamp?: Date | string
+  }
+
+  export type ABTestCreateOrConnectWithoutUserInput = {
+    where: ABTestWhereUniqueInput
+    create: XOR<ABTestCreateWithoutUserInput, ABTestUncheckedCreateWithoutUserInput>
+  }
+
+  export type ABTestCreateManyUserInputEnvelope = {
+    data: ABTestCreateManyUserInput | ABTestCreateManyUserInput[]
+  }
+
   export type UserHealthConditionUpsertWithWhereUniqueWithoutUserInput = {
     where: UserHealthConditionWhereUniqueInput
     update: XOR<UserHealthConditionUpdateWithoutUserInput, UserHealthConditionUncheckedUpdateWithoutUserInput>
@@ -45574,6 +48644,61 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FeedbackUpsertWithWhereUniqueWithoutUserInput = {
+    where: FeedbackWhereUniqueInput
+    update: XOR<FeedbackUpdateWithoutUserInput, FeedbackUncheckedUpdateWithoutUserInput>
+    create: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput>
+  }
+
+  export type FeedbackUpdateWithWhereUniqueWithoutUserInput = {
+    where: FeedbackWhereUniqueInput
+    data: XOR<FeedbackUpdateWithoutUserInput, FeedbackUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FeedbackUpdateManyWithWhereWithoutUserInput = {
+    where: FeedbackScalarWhereInput
+    data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FeedbackScalarWhereInput = {
+    AND?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
+    OR?: FeedbackScalarWhereInput[]
+    NOT?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
+    id?: StringFilter<"Feedback"> | string
+    userId?: StringFilter<"Feedback"> | string
+    recipeId?: StringFilter<"Feedback"> | string
+    rating?: IntFilter<"Feedback"> | number
+    notes?: StringNullableFilter<"Feedback"> | string | null
+    timestamp?: DateTimeFilter<"Feedback"> | Date | string
+  }
+
+  export type ABTestUpsertWithWhereUniqueWithoutUserInput = {
+    where: ABTestWhereUniqueInput
+    update: XOR<ABTestUpdateWithoutUserInput, ABTestUncheckedUpdateWithoutUserInput>
+    create: XOR<ABTestCreateWithoutUserInput, ABTestUncheckedCreateWithoutUserInput>
+  }
+
+  export type ABTestUpdateWithWhereUniqueWithoutUserInput = {
+    where: ABTestWhereUniqueInput
+    data: XOR<ABTestUpdateWithoutUserInput, ABTestUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ABTestUpdateManyWithWhereWithoutUserInput = {
+    where: ABTestScalarWhereInput
+    data: XOR<ABTestUpdateManyMutationInput, ABTestUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ABTestScalarWhereInput = {
+    AND?: ABTestScalarWhereInput | ABTestScalarWhereInput[]
+    OR?: ABTestScalarWhereInput[]
+    NOT?: ABTestScalarWhereInput | ABTestScalarWhereInput[]
+    id?: StringFilter<"ABTest"> | string
+    userId?: StringFilter<"ABTest"> | string
+    feature?: StringFilter<"ABTest"> | string
+    variant?: StringFilter<"ABTest"> | string
+    timestamp?: DateTimeFilter<"ABTest"> | Date | string
+  }
+
   export type UserCreateWithoutPreferencesInput = {
     id?: string
     email: string
@@ -45581,12 +48706,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
     allergies?: UserAllergyCreateNestedManyWithoutUserInput
     mealPlans?: MealPlanCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPreferencesInput = {
@@ -45596,12 +48724,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
     allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
     mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPreferencesInput = {
@@ -45677,12 +48808,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUpdateManyWithoutUserNestedInput
     mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPreferencesInput = {
@@ -45692,12 +48826,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
     mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserApplianceUpsertWithWhereUniqueWithoutUserPreferencesInput = {
@@ -45807,12 +48944,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     allergies?: UserAllergyCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutHealthConditionsInput = {
@@ -45822,12 +48962,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutHealthConditionsInput = {
@@ -45872,12 +49015,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     allergies?: UserAllergyUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutHealthConditionsInput = {
@@ -45887,12 +49033,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type HealthConditionUpsertWithoutUsersInput = {
@@ -45964,12 +49113,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAllergiesInput = {
@@ -45979,12 +49131,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAllergiesInput = {
@@ -46029,12 +49184,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAllergiesInput = {
@@ -46044,12 +49202,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AllergenUpsertWithoutUsersInput = {
@@ -46556,6 +49717,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutSpiceBlendsInput = {
@@ -46581,6 +49743,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutSpiceBlendsInput = {
@@ -46651,6 +49814,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutSpiceBlendsInput = {
@@ -46676,6 +49840,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type SpiceBlendUpsertWithoutRecipesInput = {
@@ -46941,6 +50106,31 @@ export namespace Prisma {
     data: MealPlanItemCreateManyRecipeInput | MealPlanItemCreateManyRecipeInput[]
   }
 
+  export type FeedbackCreateWithoutRecipeInput = {
+    id?: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+    user: UserCreateNestedOneWithoutFeedbacksInput
+  }
+
+  export type FeedbackUncheckedCreateWithoutRecipeInput = {
+    id?: string
+    userId: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+  }
+
+  export type FeedbackCreateOrConnectWithoutRecipeInput = {
+    where: FeedbackWhereUniqueInput
+    create: XOR<FeedbackCreateWithoutRecipeInput, FeedbackUncheckedCreateWithoutRecipeInput>
+  }
+
+  export type FeedbackCreateManyRecipeInputEnvelope = {
+    data: FeedbackCreateManyRecipeInput | FeedbackCreateManyRecipeInput[]
+  }
+
   export type RecipeIngredientUpsertWithWhereUniqueWithoutRecipeInput = {
     where: RecipeIngredientWhereUniqueInput
     update: XOR<RecipeIngredientUpdateWithoutRecipeInput, RecipeIngredientUncheckedUpdateWithoutRecipeInput>
@@ -47200,6 +50390,22 @@ export namespace Prisma {
     servings?: IntFilter<"MealPlanItem"> | number
   }
 
+  export type FeedbackUpsertWithWhereUniqueWithoutRecipeInput = {
+    where: FeedbackWhereUniqueInput
+    update: XOR<FeedbackUpdateWithoutRecipeInput, FeedbackUncheckedUpdateWithoutRecipeInput>
+    create: XOR<FeedbackCreateWithoutRecipeInput, FeedbackUncheckedCreateWithoutRecipeInput>
+  }
+
+  export type FeedbackUpdateWithWhereUniqueWithoutRecipeInput = {
+    where: FeedbackWhereUniqueInput
+    data: XOR<FeedbackUpdateWithoutRecipeInput, FeedbackUncheckedUpdateWithoutRecipeInput>
+  }
+
+  export type FeedbackUpdateManyWithWhereWithoutRecipeInput = {
+    where: FeedbackScalarWhereInput
+    data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyWithoutRecipeInput>
+  }
+
   export type RecipeCreateWithoutIngredientsInput = {
     id?: string
     name: string
@@ -47223,6 +50429,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutIngredientsInput = {
@@ -47248,6 +50455,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutIngredientsInput = {
@@ -47289,6 +50497,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutIngredientsInput = {
@@ -47314,6 +50523,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeCreateWithoutInstructionsInput = {
@@ -47339,6 +50549,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutInstructionsInput = {
@@ -47364,6 +50575,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutInstructionsInput = {
@@ -47405,6 +50617,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutInstructionsInput = {
@@ -47430,6 +50643,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeCreateWithoutNutritionalInfoInput = {
@@ -47455,6 +50669,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendCreateNestedManyWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutNutritionalInfoInput = {
@@ -47480,6 +50695,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUncheckedCreateNestedManyWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutNutritionalInfoInput = {
@@ -47521,6 +50737,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUpdateManyWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutNutritionalInfoInput = {
@@ -47546,6 +50763,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUncheckedUpdateManyWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeMedicalTagCreateWithoutMedicalTagInput = {
@@ -47606,6 +50824,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutMedicalTagsInput = {
@@ -47631,6 +50850,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutMedicalTagsInput = {
@@ -47691,6 +50911,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutMedicalTagsInput = {
@@ -47716,6 +50937,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type MedicalTagUpsertWithoutRecipesInput = {
@@ -47801,6 +51023,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutDietaryTagsInput = {
@@ -47826,6 +51049,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutDietaryTagsInput = {
@@ -47886,6 +51110,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutDietaryTagsInput = {
@@ -47911,6 +51136,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type DietaryTagUpsertWithoutRecipesInput = {
@@ -47996,6 +51222,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutPracticalTagsInput = {
@@ -48021,6 +51248,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutPracticalTagsInput = {
@@ -48081,6 +51309,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutPracticalTagsInput = {
@@ -48106,6 +51335,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type PracticalTagUpsertWithoutRecipesInput = {
@@ -48191,6 +51421,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutNutritionalTagsInput = {
@@ -48216,6 +51447,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutNutritionalTagsInput = {
@@ -48276,6 +51508,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutNutritionalTagsInput = {
@@ -48301,6 +51534,7 @@ export namespace Prisma {
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type NutritionalTagUpsertWithoutRecipesInput = {
@@ -48335,12 +51569,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
     allergies?: UserAllergyCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesCreateNestedOneWithoutUserInput
     shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMealPlansInput = {
@@ -48350,12 +51587,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
     allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
     shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMealPlansInput = {
@@ -48429,12 +51669,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
     shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMealPlansInput = {
@@ -48444,12 +51687,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
     shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MealPlanItemUpsertWithWhereUniqueWithoutMealPlanInput = {
@@ -48545,6 +51791,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendCreateNestedManyWithoutRecipeInput
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutMealPlanItemsInput = {
@@ -48570,6 +51817,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUncheckedCreateNestedManyWithoutRecipeInput
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutMealPlanItemsInput = {
@@ -48642,6 +51890,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUpdateManyWithoutRecipeNestedInput
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutMealPlanItemsInput = {
@@ -48667,6 +51916,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUncheckedUpdateManyWithoutRecipeNestedInput
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type UserCreateWithoutShoppingListsInput = {
@@ -48676,12 +51926,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
     allergies?: UserAllergyCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutShoppingListsInput = {
@@ -48691,12 +51944,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
     allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutShoppingListsInput = {
@@ -48776,12 +52032,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutShoppingListsInput = {
@@ -48791,12 +52050,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MealPlanUpsertWithoutShoppingListInput = {
@@ -48919,12 +52181,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
     allergies?: UserAllergyCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
     subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFavoriteRecipesInput = {
@@ -48934,12 +52199,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
     allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
     subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFavoriteRecipesInput = {
@@ -48970,6 +52238,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendCreateNestedManyWithoutRecipeInput
     nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
     mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeUncheckedCreateWithoutFavoritesInput = {
@@ -48995,6 +52264,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUncheckedCreateNestedManyWithoutRecipeInput
     nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
     mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutRecipeInput
   }
 
   export type RecipeCreateOrConnectWithoutFavoritesInput = {
@@ -49020,12 +52290,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFavoriteRecipesInput = {
@@ -49035,12 +52308,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
     subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RecipeUpsertWithoutFavoritesInput = {
@@ -49077,6 +52353,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUpdateManyWithoutRecipeNestedInput
     nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutRecipeNestedInput
   }
 
   export type RecipeUncheckedUpdateWithoutFavoritesInput = {
@@ -49102,6 +52379,7 @@ export namespace Prisma {
     spiceBlends?: RecipeSpiceBlendUncheckedUpdateManyWithoutRecipeNestedInput
     nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
     mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutRecipeNestedInput
   }
 
   export type UserCreateWithoutSubscriptionInput = {
@@ -49111,12 +52389,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
     allergies?: UserAllergyCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionInput = {
@@ -49126,12 +52407,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
     healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
     allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
     preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
     mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
     shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionInput = {
@@ -49157,12 +52441,15 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionInput = {
@@ -49172,12 +52459,311 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
     healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
     allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
     preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
     mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
     shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
     favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutFeedbacksInput = {
+    id?: string
+    email: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
+    healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
+    allergies?: UserAllergyCreateNestedManyWithoutUserInput
+    preferences?: UserPreferencesCreateNestedOneWithoutUserInput
+    mealPlans?: MealPlanCreateNestedManyWithoutUserInput
+    shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
+    favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    abTests?: ABTestCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFeedbacksInput = {
+    id?: string
+    email: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
+    healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
+    allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
+    preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
+    mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
+    shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
+    favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    abTests?: ABTestUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFeedbacksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
+  }
+
+  export type RecipeCreateWithoutFeedbacksInput = {
+    id?: string
+    name: string
+    description?: string | null
+    servings?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    prepTimeMinutes: number
+    cookTimeMinutes: number
+    totalTimeMinutes: number
+    complexity?: number
+    costTier?: string
+    requiredAppliances?: string
+    goalTags?: string
+    ingredients?: RecipeIngredientCreateNestedManyWithoutRecipeInput
+    instructions?: RecipeInstructionCreateNestedManyWithoutRecipeInput
+    medicalTags?: RecipeMedicalTagCreateNestedManyWithoutRecipeInput
+    dietaryTags?: RecipeDietaryTagCreateNestedManyWithoutRecipeInput
+    practicalTags?: RecipePracticalTagCreateNestedManyWithoutRecipeInput
+    nutritionalTags?: RecipeNutritionalTagCreateNestedManyWithoutRecipeInput
+    spiceBlends?: RecipeSpiceBlendCreateNestedManyWithoutRecipeInput
+    nutritionalInfo?: NutritionalInfoCreateNestedOneWithoutRecipeInput
+    favorites?: UserFavoriteRecipeCreateNestedManyWithoutRecipeInput
+    mealPlanItems?: MealPlanItemCreateNestedManyWithoutRecipeInput
+  }
+
+  export type RecipeUncheckedCreateWithoutFeedbacksInput = {
+    id?: string
+    name: string
+    description?: string | null
+    servings?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    prepTimeMinutes: number
+    cookTimeMinutes: number
+    totalTimeMinutes: number
+    complexity?: number
+    costTier?: string
+    requiredAppliances?: string
+    goalTags?: string
+    ingredients?: RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput
+    instructions?: RecipeInstructionUncheckedCreateNestedManyWithoutRecipeInput
+    medicalTags?: RecipeMedicalTagUncheckedCreateNestedManyWithoutRecipeInput
+    dietaryTags?: RecipeDietaryTagUncheckedCreateNestedManyWithoutRecipeInput
+    practicalTags?: RecipePracticalTagUncheckedCreateNestedManyWithoutRecipeInput
+    nutritionalTags?: RecipeNutritionalTagUncheckedCreateNestedManyWithoutRecipeInput
+    spiceBlends?: RecipeSpiceBlendUncheckedCreateNestedManyWithoutRecipeInput
+    nutritionalInfo?: NutritionalInfoUncheckedCreateNestedOneWithoutRecipeInput
+    favorites?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutRecipeInput
+    mealPlanItems?: MealPlanItemUncheckedCreateNestedManyWithoutRecipeInput
+  }
+
+  export type RecipeCreateOrConnectWithoutFeedbacksInput = {
+    where: RecipeWhereUniqueInput
+    create: XOR<RecipeCreateWithoutFeedbacksInput, RecipeUncheckedCreateWithoutFeedbacksInput>
+  }
+
+  export type UserUpsertWithoutFeedbacksInput = {
+    update: XOR<UserUpdateWithoutFeedbacksInput, UserUncheckedUpdateWithoutFeedbacksInput>
+    create: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFeedbacksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFeedbacksInput, UserUncheckedUpdateWithoutFeedbacksInput>
+  }
+
+  export type UserUpdateWithoutFeedbacksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
+    healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
+    allergies?: UserAllergyUpdateManyWithoutUserNestedInput
+    preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
+    mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
+    shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
+    favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    abTests?: ABTestUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFeedbacksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
+    healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
+    allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
+    preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
+    mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
+    shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
+    favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    abTests?: ABTestUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type RecipeUpsertWithoutFeedbacksInput = {
+    update: XOR<RecipeUpdateWithoutFeedbacksInput, RecipeUncheckedUpdateWithoutFeedbacksInput>
+    create: XOR<RecipeCreateWithoutFeedbacksInput, RecipeUncheckedCreateWithoutFeedbacksInput>
+    where?: RecipeWhereInput
+  }
+
+  export type RecipeUpdateToOneWithWhereWithoutFeedbacksInput = {
+    where?: RecipeWhereInput
+    data: XOR<RecipeUpdateWithoutFeedbacksInput, RecipeUncheckedUpdateWithoutFeedbacksInput>
+  }
+
+  export type RecipeUpdateWithoutFeedbacksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    servings?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prepTimeMinutes?: IntFieldUpdateOperationsInput | number
+    cookTimeMinutes?: IntFieldUpdateOperationsInput | number
+    totalTimeMinutes?: IntFieldUpdateOperationsInput | number
+    complexity?: IntFieldUpdateOperationsInput | number
+    costTier?: StringFieldUpdateOperationsInput | string
+    requiredAppliances?: StringFieldUpdateOperationsInput | string
+    goalTags?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeIngredientUpdateManyWithoutRecipeNestedInput
+    instructions?: RecipeInstructionUpdateManyWithoutRecipeNestedInput
+    medicalTags?: RecipeMedicalTagUpdateManyWithoutRecipeNestedInput
+    dietaryTags?: RecipeDietaryTagUpdateManyWithoutRecipeNestedInput
+    practicalTags?: RecipePracticalTagUpdateManyWithoutRecipeNestedInput
+    nutritionalTags?: RecipeNutritionalTagUpdateManyWithoutRecipeNestedInput
+    spiceBlends?: RecipeSpiceBlendUpdateManyWithoutRecipeNestedInput
+    nutritionalInfo?: NutritionalInfoUpdateOneWithoutRecipeNestedInput
+    favorites?: UserFavoriteRecipeUpdateManyWithoutRecipeNestedInput
+    mealPlanItems?: MealPlanItemUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type RecipeUncheckedUpdateWithoutFeedbacksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    servings?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prepTimeMinutes?: IntFieldUpdateOperationsInput | number
+    cookTimeMinutes?: IntFieldUpdateOperationsInput | number
+    totalTimeMinutes?: IntFieldUpdateOperationsInput | number
+    complexity?: IntFieldUpdateOperationsInput | number
+    costTier?: StringFieldUpdateOperationsInput | string
+    requiredAppliances?: StringFieldUpdateOperationsInput | string
+    goalTags?: StringFieldUpdateOperationsInput | string
+    ingredients?: RecipeIngredientUncheckedUpdateManyWithoutRecipeNestedInput
+    instructions?: RecipeInstructionUncheckedUpdateManyWithoutRecipeNestedInput
+    medicalTags?: RecipeMedicalTagUncheckedUpdateManyWithoutRecipeNestedInput
+    dietaryTags?: RecipeDietaryTagUncheckedUpdateManyWithoutRecipeNestedInput
+    practicalTags?: RecipePracticalTagUncheckedUpdateManyWithoutRecipeNestedInput
+    nutritionalTags?: RecipeNutritionalTagUncheckedUpdateManyWithoutRecipeNestedInput
+    spiceBlends?: RecipeSpiceBlendUncheckedUpdateManyWithoutRecipeNestedInput
+    nutritionalInfo?: NutritionalInfoUncheckedUpdateOneWithoutRecipeNestedInput
+    favorites?: UserFavoriteRecipeUncheckedUpdateManyWithoutRecipeNestedInput
+    mealPlanItems?: MealPlanItemUncheckedUpdateManyWithoutRecipeNestedInput
+  }
+
+  export type UserCreateWithoutAbTestsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
+    healthConditions?: UserHealthConditionCreateNestedManyWithoutUserInput
+    allergies?: UserAllergyCreateNestedManyWithoutUserInput
+    preferences?: UserPreferencesCreateNestedOneWithoutUserInput
+    mealPlans?: MealPlanCreateNestedManyWithoutUserInput
+    shoppingLists?: ShoppingListCreateNestedManyWithoutUserInput
+    favoriteRecipes?: UserFavoriteRecipeCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAbTestsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    primaryGoal?: $Enums.DietaryGoal | null
+    preferencesJson?: string | null
+    healthConditions?: UserHealthConditionUncheckedCreateNestedManyWithoutUserInput
+    allergies?: UserAllergyUncheckedCreateNestedManyWithoutUserInput
+    preferences?: UserPreferencesUncheckedCreateNestedOneWithoutUserInput
+    mealPlans?: MealPlanUncheckedCreateNestedManyWithoutUserInput
+    shoppingLists?: ShoppingListUncheckedCreateNestedManyWithoutUserInput
+    favoriteRecipes?: UserFavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+    subscription?: SubscriptionUncheckedCreateNestedOneWithoutUserInput
+    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAbTestsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAbTestsInput, UserUncheckedCreateWithoutAbTestsInput>
+  }
+
+  export type UserUpsertWithoutAbTestsInput = {
+    update: XOR<UserUpdateWithoutAbTestsInput, UserUncheckedUpdateWithoutAbTestsInput>
+    create: XOR<UserCreateWithoutAbTestsInput, UserUncheckedCreateWithoutAbTestsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAbTestsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAbTestsInput, UserUncheckedUpdateWithoutAbTestsInput>
+  }
+
+  export type UserUpdateWithoutAbTestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
+    healthConditions?: UserHealthConditionUpdateManyWithoutUserNestedInput
+    allergies?: UserAllergyUpdateManyWithoutUserNestedInput
+    preferences?: UserPreferencesUpdateOneWithoutUserNestedInput
+    mealPlans?: MealPlanUpdateManyWithoutUserNestedInput
+    shoppingLists?: ShoppingListUpdateManyWithoutUserNestedInput
+    favoriteRecipes?: UserFavoriteRecipeUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAbTestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    primaryGoal?: NullableEnumDietaryGoalFieldUpdateOperationsInput | $Enums.DietaryGoal | null
+    preferencesJson?: NullableStringFieldUpdateOperationsInput | string | null
+    healthConditions?: UserHealthConditionUncheckedUpdateManyWithoutUserNestedInput
+    allergies?: UserAllergyUncheckedUpdateManyWithoutUserNestedInput
+    preferences?: UserPreferencesUncheckedUpdateOneWithoutUserNestedInput
+    mealPlans?: MealPlanUncheckedUpdateManyWithoutUserNestedInput
+    shoppingLists?: ShoppingListUncheckedUpdateManyWithoutUserNestedInput
+    favoriteRecipes?: UserFavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+    subscription?: SubscriptionUncheckedUpdateOneWithoutUserNestedInput
+    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserHealthConditionCreateManyUserInput = {
@@ -49213,6 +52799,21 @@ export namespace Prisma {
     id?: string
     recipeId: string
     addedAt?: Date | string
+  }
+
+  export type FeedbackCreateManyUserInput = {
+    id?: string
+    recipeId: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+  }
+
+  export type ABTestCreateManyUserInput = {
+    id?: string
+    feature: string
+    variant: string
+    timestamp?: Date | string
   }
 
   export type UserHealthConditionUpdateWithoutUserInput = {
@@ -49324,6 +52925,51 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     recipeId?: StringFieldUpdateOperationsInput | string
     addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedbackUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    recipe?: RecipeUpdateOneRequiredWithoutFeedbacksNestedInput
+  }
+
+  export type FeedbackUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    recipeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedbackUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    recipeId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feature?: StringFieldUpdateOperationsInput | string
+    variant?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feature?: StringFieldUpdateOperationsInput | string
+    variant?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ABTestUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    feature?: StringFieldUpdateOperationsInput | string
+    variant?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserApplianceCreateManyUserPreferencesInput = {
@@ -49504,6 +53150,14 @@ export namespace Prisma {
     servings?: number
   }
 
+  export type FeedbackCreateManyRecipeInput = {
+    id?: string
+    userId: string
+    rating: number
+    notes?: string | null
+    timestamp?: Date | string
+  }
+
   export type RecipeIngredientUpdateWithoutRecipeInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -49664,6 +53318,30 @@ export namespace Prisma {
     dayOfWeek?: EnumDayOfWeekFieldUpdateOperationsInput | $Enums.DayOfWeek
     mealType?: EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
     servings?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FeedbackUpdateWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFeedbacksNestedInput
+  }
+
+  export type FeedbackUncheckedUpdateWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedbackUncheckedUpdateManyWithoutRecipeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RecipeMedicalTagCreateManyMedicalTagInput = {

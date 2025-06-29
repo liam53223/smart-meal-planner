@@ -1,4 +1,5 @@
 import { HybridAIRouter } from './hybrid-ai-router';
+import { RecipeVectorDB } from '../vector-db/chroma-client';
 
 // Kojo's personality traits and moods
 type KojoMood = 'zen' | 'encouraging' | 'playful' | 'focused' | 'wise';
@@ -12,6 +13,7 @@ interface KojoState {
 
 export class Kojo {
   private aiRouter: HybridAIRouter;
+  private vectorDB: RecipeVectorDB;
   private state: KojoState;
   private personalityTraits = {
     empathetic: 0.9,
@@ -25,6 +27,11 @@ export class Kojo {
     this.aiRouter = new HybridAIRouter(
       process.env.NEXT_PUBLIC_OLLAMA_ENDPOINT || 'http://localhost:11434',
       process.env.CLAUDE_API_KEY
+    );
+    
+    this.vectorDB = new RecipeVectorDB();
+    this.vectorDB.initialize().catch(error => 
+      console.error('Failed to initialize vector DB:', error)
     );
     
     this.state = {
@@ -78,29 +85,51 @@ export class Kojo {
     };
   }
 
-  async recommendRecipe(userProfile: any): Promise<{
+  async recommendRecipe(userProfile: any, query?: string): Promise<{
     recipe: any;
     kojoNote: string;
     spiceBlendSuggestion?: any;
   }> {
-    const prompt = `Based on this user profile, recommend a recipe:
-    - Cooking skill: ${userProfile.cookingSkill}
-    - Max prep time: ${userProfile.maxPrepTime} minutes
-    - Available appliances: ${userProfile.appliances.join(', ')}
-    - Dietary restrictions: ${userProfile.allergies.join(', ')}
-    - Cuisine preferences: ${userProfile.cuisinePreferences}
-    - Budget: ${userProfile.budgetRange}
+    // First search in our recipe database using ChromaDB
+    const searchQuery = query || `${userProfile.cuisinePreferences} recipe under ${userProfile.maxPrepTime} minutes`;
     
-    Focus on practical, achievable recipes they can actually make.`;
+    const searchResults = await this.vectorDB.searchRecipes(
+      searchQuery,
+      {
+        appliances: userProfile.appliances || [],
+        maxPrepTime: userProfile.maxPrepTime || 30,
+        dietaryRestrictions: userProfile.allergies || [],
+        skillLevel: userProfile.cookingSkill || 'Intermediate'
+      },
+      5
+    );
 
-    const response = await this.aiRouter.routeWithCache({
-      type: 'recipe',
-      query: prompt,
-      context: userProfile
-    });
+    let recipe;
+    
+    if (searchResults && searchResults.length > 0) {
+      // Use the best match from our database
+      recipe = searchResults[0];
+      console.log('🎯 Found recipe in database:', recipe.metadata.name);
+    } else {
+      // Fallback to AI generation if no good matches
+      const prompt = `Based on this user profile, recommend a recipe:
+      - Cooking skill: ${userProfile.cookingSkill}
+      - Max prep time: ${userProfile.maxPrepTime} minutes
+      - Available appliances: ${userProfile.appliances.join(', ')}
+      - Dietary restrictions: ${userProfile.allergies.join(', ')}
+      - Cuisine preferences: ${userProfile.cuisinePreferences}
+      - Budget: ${userProfile.budgetRange}
+      
+      Focus on practical, achievable recipes they can actually make.`;
 
-    // Parse recipe from response
-    const recipe = this.parseRecipeFromResponse(response.response);
+      const response = await this.aiRouter.routeWithCache({
+        type: 'recipe',
+        query: prompt,
+        context: userProfile
+      });
+
+      recipe = this.parseRecipeFromResponse(response.response);
+    }
     
     // Add Kojo's personal note
     const kojoNote = this.generateKojoNote(recipe, userProfile);

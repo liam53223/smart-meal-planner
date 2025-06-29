@@ -123,7 +123,8 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  primaryGoal: 'primaryGoal'
+  primaryGoal: 'primaryGoal',
+  preferencesJson: 'preferencesJson'
 };
 
 exports.Prisma.UserPreferencesScalarFieldEnum = {
@@ -397,6 +398,23 @@ exports.Prisma.SubscriptionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FeedbackScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  recipeId: 'recipeId',
+  rating: 'rating',
+  notes: 'notes',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.ABTestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  feature: 'feature',
+  variant: 'variant',
+  timestamp: 'timestamp'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -534,7 +552,9 @@ exports.Prisma.ModelName = {
   ShoppingList: 'ShoppingList',
   ShoppingListItem: 'ShoppingListItem',
   UserFavoriteRecipe: 'UserFavoriteRecipe',
-  Subscription: 'Subscription'
+  Subscription: 'Subscription',
+  Feedback: 'Feedback',
+  ABTest: 'ABTest'
 };
 
 /**

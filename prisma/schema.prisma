@@ -33,6 +33,9 @@ model User {
   shoppingLists     ShoppingList[]
   favoriteRecipes   UserFavoriteRecipe[]
   subscription      Subscription?
+  feedbacks         Feedback[]
+  abTests           ABTest[]
+  preferencesJson   String?              // JSON string for learned preferences from feedback
   
   @@map("users")
 }
@@ -262,6 +265,7 @@ model Recipe {
   // User Interactions
   favorites       UserFavoriteRecipe[]
   mealPlanItems   MealPlanItem[]
+  feedbacks       Feedback[]
   
   @@map("recipes")
 }
@@ -499,6 +503,35 @@ model Subscription {
   user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   
   @@map("subscriptions")
+}
+
+// NEW: Feedback System
+model Feedback {
+  id         String   @id @default(cuid())
+  userId     String
+  recipeId   String
+  rating     Int      // 1-5 stars
+  notes      String?
+  timestamp  DateTime @default(now())
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe     Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, recipeId])
+  @@map("feedbacks")
+}
+
+// NEW: A/B Testing
+model ABTest {
+  id         String   @id @default(cuid())
+  userId     String
+  feature    String
+  variant    String   // "A" or "B"
+  timestamp  DateTime @default(now())
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("ab_tests")
 }
 
 // Enums
