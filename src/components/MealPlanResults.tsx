@@ -5,11 +5,30 @@ import React from 'react';
 interface MealPlanResultsProps {
   formData: {
     primaryGoal: string;
+    activityLevel: string;
+    targetCalories: string;
     cookingSkill: string;
+    knifeSkillLevel: string;
+    preferredTechniques: string[];
+    recipeComplexityComfort: number;
     maxPrepTime: number;
+    appliances: string[];
     budgetRange: string;
+    weeklyFoodBudget: string;
+    shoppingFrequency: string;
+    mealPlanningApproach: number;
     householdSize: number;
+    cuisinePreferences: string[];
+    spiceTolerance: number;
+    flavorIntensity: number;
+    mealTimingPreference: string;
     allergies: string[];
+    textureLimitations: string;
+    foodsToAvoid: string;
+    portionControlMotivation: number;
+    habitChangeReadiness: string[];
+    socialEatingPattern: number;
+    successTrackingPreference: string;
   };
   onStartOver: () => void;
 }
@@ -102,6 +121,10 @@ export function MealPlanResults({ formData, onStartOver }: MealPlanResultsProps)
             <p className="font-medium text-gray-800">{formData.primaryGoal}</p>
           </div>
           <div>
+            <p className="text-sm text-gray-600">Activity Level</p>
+            <p className="font-medium text-gray-800">{formData.activityLevel}</p>
+          </div>
+          <div>
             <p className="text-sm text-gray-600">Cooking Skill Level</p>
             <p className="font-medium text-gray-800">{formData.cookingSkill}</p>
           </div>
@@ -117,6 +140,18 @@ export function MealPlanResults({ formData, onStartOver }: MealPlanResultsProps)
             <p className="text-sm text-gray-600">Household Size</p>
             <p className="font-medium text-gray-800">{formData.householdSize} people</p>
           </div>
+          {formData.appliances.length > 0 && (
+            <div>
+              <p className="text-sm text-gray-600">Available Appliances</p>
+              <p className="font-medium text-gray-800">{formData.appliances.join(', ')}</p>
+            </div>
+          )}
+          {formData.cuisinePreferences.length > 0 && (
+            <div>
+              <p className="text-sm text-gray-600">Cuisine Preferences</p>
+              <p className="font-medium text-gray-800">{formData.cuisinePreferences.join(', ')}</p>
+            </div>
+          )}
           {formData.allergies.length > 0 && !formData.allergies.includes('None') && (
             <div>
               <p className="text-sm text-gray-600">Allergies/Restrictions</p>
@@ -126,6 +161,11 @@ export function MealPlanResults({ formData, onStartOver }: MealPlanResultsProps)
         </div>
         <div className="mt-4 p-4 bg-white rounded-lg">
           <p className="text-sm text-gray-700">{getGoalDescription()}</p>
+          {formData.habitChangeReadiness.length > 0 && (
+            <p className="text-sm text-gray-700 mt-2">
+              <strong>Ready for:</strong> {formData.habitChangeReadiness.join(', ')}
+            </p>
+          )}
         </div>
       </div>
 

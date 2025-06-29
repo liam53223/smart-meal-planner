@@ -1,4 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../src/generated/prisma';
+import { seedAppliances } from './seed-appliances';
+import { seedSpiceBlends } from './seed-spice-blends';
 
 const prisma = new PrismaClient();
 
@@ -12,6 +14,8 @@ async function main() {
   await seedHealthConditions();
   await seedAllergens();
   await seedTags();
+  await seedAppliances();
+  await seedSpiceBlends();
   await seedSampleRecipes();
   await seedSampleUsers();
 
@@ -28,6 +32,7 @@ async function clearDatabase() {
   await prisma.shoppingList.deleteMany();
   await prisma.mealPlan.deleteMany();
   await prisma.subscription.deleteMany();
+  await prisma.recipeSpiceBlend.deleteMany();
   await prisma.recipeNutritionalTag.deleteMany();
   await prisma.recipePracticalTag.deleteMany();
   await prisma.recipeDietaryTag.deleteMany();
@@ -40,10 +45,14 @@ async function clearDatabase() {
   await prisma.practicalTag.deleteMany();
   await prisma.dietaryTag.deleteMany();
   await prisma.medicalTag.deleteMany();
+  await prisma.userBehavior.deleteMany();
+  await prisma.userAppliance.deleteMany();
   await prisma.userAllergy.deleteMany();
   await prisma.userHealthCondition.deleteMany();
   await prisma.userPreferences.deleteMany();
   await prisma.user.deleteMany();
+  await prisma.spiceBlend.deleteMany();
+  await prisma.appliance.deleteMany();
   await prisma.allergen.deleteMany();
   await prisma.healthCondition.deleteMany();
 }
@@ -244,6 +253,13 @@ async function seedSampleRecipes() {
       name: 'Low-FODMAP Chicken & Rice Bowl',
       description: 'Gentle on the digestive system, perfect for IBS management',
       servings: 4,
+      prepTimeMinutes: 10,
+      cookTimeMinutes: 20,
+      totalTimeMinutes: 30,
+      complexity: 2,
+      costTier: 'budget',
+      requiredAppliances: ['stove'],
+      goalTags: ['weight_loss', 'ibs_management'],
       ingredients: [
         { name: 'Chicken breast', amount: 1, unit: 'lb', category: 'protein' },
         { name: 'White rice', amount: 1, unit: 'cup', category: 'grain' },
@@ -278,6 +294,13 @@ async function seedSampleRecipes() {
       name: 'Mediterranean Quinoa Salad',
       description: 'Heart-healthy Mediterranean flavors with plant-based protein',
       servings: 6,
+      prepTimeMinutes: 15,
+      cookTimeMinutes: 15,
+      totalTimeMinutes: 30,
+      complexity: 2,
+      costTier: 'moderate',
+      requiredAppliances: ['stove'],
+      goalTags: ['heart_health', 'general_health'],
       ingredients: [
         { name: 'Quinoa', amount: 1.5, unit: 'cups', category: 'grain' },
         { name: 'Cherry tomatoes', amount: 2, unit: 'cups', category: 'vegetable' },
@@ -315,6 +338,13 @@ async function seedSampleRecipes() {
       name: 'Diabetic-Friendly Salmon with Roasted Vegetables',
       description: 'Blood sugar stable meal with omega-3 rich salmon',
       servings: 4,
+      prepTimeMinutes: 10,
+      cookTimeMinutes: 30,
+      totalTimeMinutes: 40,
+      complexity: 2,
+      costTier: 'premium',
+      requiredAppliances: ['oven'],
+      goalTags: ['diabetes_management', 'heart_health'],
       ingredients: [
         { name: 'Salmon fillets', amount: 1.5, unit: 'lbs', category: 'protein' },
         { name: 'Broccoli', amount: 2, unit: 'cups', category: 'vegetable' },
@@ -356,7 +386,14 @@ async function seedSampleRecipes() {
       data: {
         name: recipeData.name,
         description: recipeData.description,
-        servings: recipeData.servings
+        servings: recipeData.servings,
+        prepTimeMinutes: recipeData.prepTimeMinutes,
+        cookTimeMinutes: recipeData.cookTimeMinutes,
+        totalTimeMinutes: recipeData.totalTimeMinutes,
+        complexity: recipeData.complexity,
+        costTier: recipeData.costTier,
+        requiredAppliances: JSON.stringify(recipeData.requiredAppliances),
+        goalTags: JSON.stringify(recipeData.goalTags)
       }
     });
 
@@ -393,7 +430,7 @@ async function seedSampleRecipes() {
 
     // Add medical tags
     for (const tagName of recipeData.medicalTags) {
-      const tag = medicalTags.find(t => t.name === tagName);
+      const tag = medicalTags.find((t: any) => t.name === tagName);
       if (tag) {
         await prisma.recipeMedicalTag.create({
           data: {
@@ -406,7 +443,7 @@ async function seedSampleRecipes() {
 
     // Add dietary tags
     for (const tagName of recipeData.dietaryTags) {
-      const tag = dietaryTags.find(t => t.name === tagName);
+      const tag = dietaryTags.find((t: any) => t.name === tagName);
       if (tag) {
         await prisma.recipeDietaryTag.create({
           data: {
@@ -419,7 +456,7 @@ async function seedSampleRecipes() {
 
     // Add practical tags
     for (const tagName of recipeData.practicalTags) {
-      const tag = practicalTags.find(t => t.name === tagName);
+      const tag = practicalTags.find((t: any) => t.name === tagName);
       if (tag) {
         await prisma.recipePracticalTag.create({
           data: {
@@ -432,7 +469,7 @@ async function seedSampleRecipes() {
 
     // Add nutritional tags
     for (const tagName of recipeData.nutritionalTags) {
-      const tag = nutritionalTags.find(t => t.name === tagName);
+      const tag = nutritionalTags.find((t: any) => t.name === tagName);
       if (tag) {
         await prisma.recipeNutritionalTag.create({
           data: {
